@@ -1,9 +1,91 @@
-<div style="max-width:520px;margin:0 auto;padding:16px 14px 28px;font-family:Montserrat,Arial,Helvetica,sans-serif;text-align:center;background:#FFFDF9;color:#24143D;">
-  <img src="https://negocio-ebooks.github.io/landings-img/sat/embudo/ds4-reveal.jpg" alt="Palestra in Casa con Oggetti Comuni™ a metà prezzo" style="display:block;width:100%;height:auto;border-radius:12px;margin:0 0 12px;">
-  <img src="https://negocio-ebooks.github.io/landings-img/sat/embudo/ds4-urgencia.jpg" alt="Offerta unica" style="display:block;width:100%;height:auto;border-radius:12px;margin:0 0 12px;">
-  <p style="font-size:18px;margin:0 0 4px;"><s style="opacity:.7;">{compare}</s> → <b style="font-size:26px;color:#7838B7;">{price}</b></p>
-  <p style="font-size:14px;margin:0 0 14px;opacity:.85;">È l&#x27;unica volta che vedrai questo prezzo.</p>
-  <button data-pp-accept style="display:block;width:100%;padding:18px 14px;margin:0 0 8px;border:0;border-radius:12px;background:linear-gradient(#168A45,#10793A);color:#fff;font-size:18px;line-height:1.3;font-weight:800;cursor:pointer;">🎯 SÌ, voglio la Palestra in Casa a metà prezzo 🚀</button>
-  <button data-pp-decline style="display:block;width:auto;max-width:92%;padding:10px 14px;margin:6px auto 14px;border:0;border-radius:8px;background:transparent;color:#6b7280;font-size:14px;line-height:1.35;font-weight:600;text-decoration:underline;cursor:pointer;">No, grazie. Restiamo come siamo</button>
-  <p style="font-size:13px;line-height:1.5;margin:0;opacity:.85;">🔒 Pagamento sicuro · 🛡️ Garanzia di 7 giorni · ⚡ Accesso immediato · ✓ Pagamento unico</p>
+<!-- Post-compra SAT-IT · DownSell 4 (50%) · plantilla de Mati. Sin JavaScript. data-pp-accept = SÌ. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+.sap{--d:#24143D;--ac:#7838B7;--acd:#4B1F72;--acs:#F5EFFB;--btn:#168A45;--btnd:#0E6B34;--hot:#D6336C;--ink:#24143D;--soft:#5F566A;--bd:#E7DEED;--bg:#FFFDF9;--bg2:#F5EFFB;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;max-width:520px;margin:0 auto;padding:0 0 28px;text-align:left;-webkit-font-smoothing:antialiased}
+.sap *{box-sizing:border-box}
+.sap h1,.sap h2,.sap h3{font-family:'Montserrat',sans-serif;color:var(--ink);margin:0;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.sap p{margin:0}
+.sap img{display:block;max-width:100%;height:auto}
+.sap .ok{display:block;background:var(--acs);color:var(--acd);font-weight:800;font-size:13px;padding:10px 16px;text-align:center}
+.sap .nm::before{content:", "}
+.sap .nm:empty{display:none}
+.sap .top{padding:22px 20px 0;text-align:center}
+.sap .pill{display:inline-block;background:var(--d);color:#fff;font-weight:800;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;padding:6px 14px;border-radius:100px}
+.sap .top h1{font-size:27px;margin:14px 0 10px}
+.sap .top h1 em{font-style:normal;color:var(--ac)}
+.sap .sub{font-size:15px;color:var(--soft)}
+.sap .card{margin:20px 16px 0;background:#fff;border:1px solid var(--bd);border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(36,20,61,.14)}
+.sap .vis{background:var(--bg2);padding:14px}
+.sap .vis img{width:100%;border-radius:14px}
+.sap .disc{display:inline-block;align-self:center;background:var(--hot);color:#fff;font-weight:800;font-size:14px;line-height:1;padding:6px 9px;border-radius:8px;transform:rotate(-3deg)}
+.sap .disc::after{content:" OFF"}
+.sap .disc:empty{display:none}
+.sap .body{padding:18px 20px 22px}
+.sap .body h2{font-size:21px;margin-bottom:12px}
+.sap .list{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.sap .list li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14.5px;line-height:1.4}
+.sap .list li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--acs);color:var(--acd);font-weight:800;font-size:13px}
+.sap .why{background:var(--bg2);border:1px dashed var(--bd);border-radius:14px;padding:12px 14px;font-size:14px;margin:0 0 16px;color:var(--soft)}
+.sap .why b{color:var(--ink)}
+.sap .price{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
+.sap .old{font-size:17px;color:#A99BB8;text-decoration:line-through}
+.sap .old:empty{display:none}
+.sap .now{font-weight:900;font-size:40px;color:var(--ink);line-height:1}
+.sap .save{display:block;text-align:center;font-weight:800;font-size:13.5px;color:var(--btnd);margin-top:6px}
+.sap .save::before{content:"Risparmi "}
+.sap .save:empty{display:none}
+.sap .btn{display:flex;align-items:center;justify-content:center;width:100%;margin:16px 0 0;padding:16px;border:0;border-radius:14px;background:var(--btn);color:#fff;font-family:'Montserrat',sans-serif;font-weight:800;font-size:18px;line-height:1.2;text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 6px 0 var(--btnd);transition:transform .12s ease,box-shadow .12s ease}
+.sap .btn:active{transform:translateY(3px);box-shadow:0 3px 0 var(--btnd)}
+.sap .btn span{display:block}
+.sap .btn small{display:block;margin-top:4px;font-weight:600;font-size:12.5px;opacity:.85}
+.sap .timer{display:flex;justify-content:center;align-items:center;gap:8px;margin:16px 0 0;font-size:13.5px;color:var(--soft)}
+.sap .timer b{font-size:16px;color:var(--hot);background:#FCE4EC;padding:2px 10px;border-radius:8px;font-variant-numeric:tabular-nums}
+.sap .sec{margin:28px 16px 0}
+.sap .sec h3{font-size:20px;text-align:center;margin-bottom:12px}
+.sap .uses{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sap .use{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 8px;text-align:center;font-size:12.5px;font-weight:700;line-height:1.3}
+.sap .use i{display:block;font-style:normal;font-size:24px;margin-bottom:4px}
+.sap .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sap .duo div{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px 12px;text-align:center;font-size:13.5px;line-height:1.35}
+.sap .duo div.new{background:#E8F5EC;border-color:#BFE3CB}
+.sap .duo i{display:block;font-style:normal;font-size:26px;margin-bottom:4px}
+.sap .duo b{display:block;font-size:14.5px;margin-bottom:2px}
+.sap .cap{text-align:center;font-size:13.5px;color:var(--soft);margin-top:10px}
+.sap .end{margin:28px 16px 0;background:var(--d);border-radius:20px;padding:24px 20px 18px;color:#fff;text-align:center}
+.sap .end h3{color:#fff;font-size:22px;margin-bottom:8px}
+.sap .end p{color:#DCCFEA;font-size:14.5px;margin-bottom:14px}
+.sap .end .now{color:#fff}
+.sap .end .old{color:#9C8BB0}
+.sap .no{display:block;width:100%;margin:16px 0 0;padding:10px;background:none;border:0;color:#CFC2DE;font-family:'Montserrat',sans-serif;font-size:13.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sap .trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px 16px 0;font-size:12px;color:var(--soft);font-weight:700}
+@media (min-width:600px){.sap .top h1{font-size:32px}}
+</style>
+<div class="sap">
+  <div class="top">
+    <span class="pill">⚠ Offerta unica: ultima possibilità</span>
+    <h1>Palestra in Casa con Oggetti Comuni™ <em>a metà prezzo.</em></h1>
+    <p class="sub">Il lunedì, di nuovo da capo. È l'unica volta che vedrai questo prezzo.</p>
+  </div>
+  <div class="card">
+    <div class="vis"><img src="https://negocio-ebooks.github.io/landings-img/sat/embudo/ds4-reveal.jpg" alt="Palestra in Casa con Oggetti Comuni™ a metà prezzo"></div>
+    <div class="body">
+      <ul class="list"><li>50 esercizi con sedia, bottiglie, asciugamano, cuscino e muro 🏠</li><li>20 schede da consegnare alla famiglia, un mini-piano a settimana 📝</li><li>3 routine del mattino da 10 minuti: a letto, da seduti, in piedi 🌅</li><li>La checklist Casa Sicura e il Diario del Movimento ✅</li></ul>
+      <p class="why"><b>Perché a metà prezzo?</b> Perché è l'ultima volta che vedi questa offerta: dopo questa pagina sparisce.</p>
+      <div class="price"><span class="disc">{discount}</span><span class="old">{compare}</span><span class="now">{price}</span></div>
+      <span class="save">{savings}</span>
+      <a href="#" class="btn" data-pp-accept><span>SÌ, LO VOGLIO A METÀ PREZZO →<small>Un clic e si aggiunge al tuo ordine</small></span></a>
+      <p class="timer">Prezzo riservato per <b>{timer}</b></p>
+    </div>
+  </div>
+  <div class="sec"><img src="https://negocio-ebooks.github.io/landings-img/sat/embudo/ds4-urgencia.jpg" alt="Offerta unica" style="border-radius:16px"></div>
+  <div class="end">
+    <h3>Ultima occasione per la Palestra in Casa</h3>
+    <div class="price"><span class="old">{compare}</span><span class="now">{price}</span></div>
+    <a href="#" class="btn" data-pp-accept><span>SÌ, A METÀ PREZZO →<small>Si aggiunge al tuo ordine con un clic</small></span></a>
+    <button type="button" class="no" data-pp-decline>No, grazie. Restiamo come siamo</button>
+  </div>
+  <p class="trust"><span>🔒 Pagamento sicuro</span><span>📩 Accesso immediato</span><span>🛡️ Garanzia di 7 giorni</span><span>📄 PDF</span></p>
 </div>
