@@ -1,0 +1,102 @@
+<!-- Post-compra CDA-AR · UpSell 2 · plantilla de Mati (memoria/postcompra-sin-vsl-plantilla-html.md). Sin JavaScript. data-pp-accept = SÍ. -->
+<style>
+.sap{--d:#2C1016;--ac:#43161C;--acd:#43161C;--acs:#F3E7E3;--btn:#166534;--btnd:#0F4A26;--hot:#8E2A35;--ink:#1C1817;--soft:#66584F;--bd:#CEBCA8;--bg:#F8F3ED;--bg2:#EFE6DD;--gold:#B58E5E;
+  font-family:Arial,'Helvetica Neue',system-ui,sans-serif;color:var(--ink);background:var(--bg);line-height:1.5;max-width:520px;margin:0 auto;padding:0 0 28px;text-align:left;-webkit-font-smoothing:antialiased}
+.sap *{box-sizing:border-box}
+.sap h1,.sap h2,.sap h3{font-family:Georgia,'Times New Roman',serif;color:var(--ink);margin:0;line-height:1.18;font-weight:700;letter-spacing:0}
+.sap p{margin:0}
+.sap img{display:block;max-width:100%;height:auto}
+.sap .ok{display:block;background:var(--acs);color:var(--acd);font-weight:800;font-size:13px;padding:10px 16px;text-align:center}
+.sap .nm::before{content:", "}
+.sap .nm:empty{display:none}
+.sap .top{padding:22px 20px 0;text-align:center}
+.sap .pill{display:inline-block;background:var(--d);color:#D8B785;font-weight:800;font-size:11.5px;letter-spacing:.6px;text-transform:uppercase;padding:6px 14px;border-radius:100px}
+.sap .top h1{font-size:27px;margin:14px 0 10px}
+.sap .top h1 em{font-style:italic;color:var(--ac)}
+.sap .sub{font-size:15px;color:var(--soft)}
+.sap .card{margin:20px 16px 0;background:#fff;border:1px solid var(--bd);border-radius:20px;overflow:hidden;box-shadow:0 18px 40px rgba(44,16,22,.14)}
+.sap .vis{background:var(--bg2);padding:14px}
+.sap .vis img{width:100%;border-radius:14px}
+.sap .disc{display:inline-block;align-self:center;background:var(--hot);color:#fff;font-weight:800;font-size:14px;line-height:1;padding:6px 9px;border-radius:8px;transform:rotate(-3deg)}
+.sap .disc::after{content:" OFF"}
+.sap .disc:empty{display:none}
+.sap .body{padding:18px 20px 22px}
+.sap .body h2{font-size:21px;margin-bottom:12px}
+.sap .list{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:9px}
+.sap .list li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-size:14.5px;line-height:1.4}
+.sap .list li::before{content:"✓";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--acs);color:var(--acd);font-weight:800;font-size:13px}
+.sap .why{background:var(--bg2);border:1px dashed var(--bd);border-radius:14px;padding:12px 14px;font-size:14px;margin:0 0 16px;color:var(--soft)}
+.sap .why b{color:var(--ink)}
+.sap .price{display:flex;align-items:baseline;justify-content:center;gap:10px;flex-wrap:wrap}
+.sap .old{font-size:17px;color:#A8988B;text-decoration:line-through}
+.sap .old:empty{display:none}
+.sap .now{font-weight:900;font-size:40px;color:var(--ink);line-height:1}
+.sap .save{display:block;text-align:center;font-weight:800;font-size:13.5px;color:var(--btnd);margin-top:6px}
+.sap .save::before{content:"Ahorrás "}
+.sap .save:empty{display:none}
+.sap .btn{display:flex;align-items:center;justify-content:center;width:100%;margin:16px 0 0;padding:16px;border:0;border-radius:14px;background:var(--btn);color:#fff;font-family:Arial,sans-serif;font-weight:800;font-size:18px;line-height:1.2;text-decoration:none;text-align:center;cursor:pointer;box-shadow:0 6px 0 var(--btnd);transition:transform .12s ease,box-shadow .12s ease}
+.sap .btn:active{transform:translateY(3px);box-shadow:0 3px 0 var(--btnd)}
+.sap .btn span{display:block}
+.sap .btn small{display:block;margin-top:4px;font-weight:600;font-size:12.5px;opacity:.85}
+.sap .timer{display:flex;justify-content:center;align-items:center;gap:8px;margin:16px 0 0;font-size:13.5px;color:var(--soft)}
+.sap .timer b{font-size:16px;color:var(--hot);background:#F3E1E1;padding:2px 10px;border-radius:8px;font-variant-numeric:tabular-nums}
+.sap .sec{margin:28px 16px 0}
+.sap .sec h3{font-size:20px;text-align:center;margin-bottom:12px}
+.sap .uses{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.sap .use{background:#fff;border:1px solid var(--bd);border-radius:14px;padding:12px 8px;text-align:center;font-size:12.5px;font-weight:700;line-height:1.3}
+.sap .use i{display:block;font-style:normal;font-size:24px;margin-bottom:4px}
+.sap .duo{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sap .duo div{background:var(--bg2);border:1px solid var(--bd);border-radius:14px;padding:14px 12px;text-align:center;font-size:13.5px;line-height:1.35}
+.sap .duo div.new{background:#E6F0E8;border-color:#B9D6C1}
+.sap .duo i{display:block;font-style:normal;font-size:26px;margin-bottom:4px}
+.sap .duo b{display:block;font-size:14.5px;margin-bottom:2px}
+.sap .cap{text-align:center;font-size:13.5px;color:var(--soft);margin-top:10px}
+.sap .end{margin:28px 16px 0;background:var(--d);border:1px solid var(--gold);border-radius:20px;padding:24px 20px 18px;color:#fff;text-align:center}
+.sap .end h3{color:#fff;font-size:22px;margin-bottom:8px}
+.sap .end p{color:#E9DCCF;font-size:14.5px;margin-bottom:14px}
+.sap .end .now{color:#fff}
+.sap .end .old{color:#A88F86}
+.sap .no{display:block;width:100%;margin:16px 0 0;padding:10px;background:none;border:0;color:#D8C8BC;font-family:Arial,sans-serif;font-size:13.5px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.sap .trust{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:18px 16px 0;font-size:12px;color:var(--soft);font-weight:700}
+@media (min-width:600px){.sap .top h1{font-size:32px}}
+</style>
+<div class="sap">
+  <div class="ok">✅ Tu compra está confirmada. ¡Gracias<span class="nm">{first-name}</span>!</div>
+  <div class="top">
+    <span class="pill">✋ Esperá: ¿y si no le calza?</span>
+    <h1>Tu clienta se prueba el corsé y no le queda. <em>¿Qué tocás del molde?</em></h1>
+    <p class="sub">Un asistente que te dice qué corregir, 40 problemas de calce resueltos y cómo adaptar el molde a cada clienta.</p>
+  </div>
+  <div class="card">
+    <div class="vis"><img src="https://negocio-ebooks.github.io/landings-img/cda/embudo/oto2-mockup.jpg" alt="Calce Perfecto Sin Rehacer™"></div>
+    <div class="body">
+      <h2>Calce Perfecto Sin Rehacer™</h2>
+      <ul class="list"><li>Asistente IA de corsetería: le contás la prueba y te dice qué corregir en el molde 🤖</li><li>40 problemas de calce, cada uno con su causa y la corrección en el molde 🧵</li><li>Cómo adaptar el molde a las medidas de tu clienta: paneles, talle, busto, cadera y copa 📐</li><li>Cómo tomar medidas + ficha para imprimir, y el plan de la primera prueba 📏</li></ul>
+      <p class="why"><b>¿Por qué este precio?</b> Porque ya sos clienta: esta oferta es solo para quien acaba de comprar Corsetería de Autor y no vuelve a aparecer.</p>
+      <div class="price"><span class="disc">{discount}</span><span class="old">{compare}</span><span class="now">{price}</span></div>
+      <span class="save">{savings}</span>
+      <a href="#" class="btn" data-pp-accept><span>SÍ, QUIERO QUE CALCEN SIN REHACER 🤝<small>Con un toque se suma a tu pedido</small></span></a>
+      <p class="timer">Precio reservado por <b>{timer}</b></p>
+    </div>
+  </div>
+  <div class="sec">
+    <h3>Para cuándo es</h3>
+    <div class="uses"><div class="use"><i>📏</i>Antes de cortar la tela buena</div><div class="use"><i>👗</i>En la prueba con tu clienta</div><div class="use"><i>🌙</i>Cuando te trabás de noche</div></div>
+  </div>
+  <div class="sec">
+    <h3>Lo que ya tenés y lo que te falta</h3>
+    <div class="duo">
+      <div><i>📖</i><b>Ya tenés</b>Los moldes y la lista de acabados</div>
+      <div class="new"><i>➕</i><b>Te falta</b>Qué hacer cuando no calza</div>
+    </div>
+    <p class="cap">Lo que más frena no es coser: es la prueba que no sale.</p>
+  </div>
+  <div class="end">
+    <h3>Que la prueba sea un ajuste, no un rehacer</h3>
+    <p>Sin ayuda, cada prueba que no sale es un motivo para abandonar. Con el asistente, es un ajuste más.</p>
+    <div class="price"><span class="old">{compare}</span><span class="now">{price}</span></div>
+    <a href="#" class="btn" data-pp-accept><span>SÍ, LO QUIERO →<small>Se suma a tu pedido con un toque</small></span></a>
+    <button type="button" class="no" data-pp-decline>No, gracias — si no calza, lo rehago de nuevo</button>
+  </div>
+  <p class="trust"><span>🔒 Pago seguro</span><span>⚡ Acceso inmediato</span><span>🛡️ Garantía de 7 días</span><span>📄 Digital</span></p>
+</div>
