@@ -1,5 +1,5 @@
-<!-- Post-compra CDA-AR · DownSell 4 (50%) · DESATÁ EL LAZO DEL CORSÉ · CSS puro, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
-<style>
+<!-- Post-compra CDA-AR · DownSell 4 (50%) · DESATÁ EL LAZO DEL CORSÉ · CSS puro con <details>, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
+<style>.jg-sum{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}.jg-sum::-webkit-details-marker{display:none}.jg-sum::marker{content:""}.jg-g[open]>.jg-sum{pointer-events:none}
 .jg,.jg *{box-sizing:border-box}
 .jg{--bd:#43161C;--bd2:#2C1016;--cr:#F8F3ED;--au:#D8B785;--au2:#B58E5E;--ok:#1f8a4c;--ok2:#166534;
   font-family:Arial,'Helvetica Neue',system-ui,sans-serif;color:var(--cr);text-align:center;overflow-x:hidden;
@@ -52,13 +52,13 @@
 @keyframes jg-burst{0%{opacity:1;transform:translate(0,0) rotate(0)}100%{opacity:0;transform:translate(var(--x),var(--y)) rotate(var(--r))}}
 @media(prefers-reduced-motion:reduce){.jg *{animation-duration:.01s!important;animation-delay:0s!important}}
 @media(max-width:400px){.jg-cta,.jg-yes{font-size:16px}}
-.jg-go:checked~.jg-conf{visibility:visible}.jg-go:checked~.jg-conf i{animation:jg-burst 1.6s cubic-bezier(.15,.7,.3,1) 2.4s both}
-.jg-go:checked~.lz-stage .jg-cta{animation:none;pointer-events:none}
-.jg-go:checked~.lz-stage .jg-cta .a{display:none}
-.jg-go:checked~.lz-stage .jg-cta .b{display:block;animation:jg-off 0s 2.4s forwards}
-.jg-go:checked~.lz-stage .jg-cta .c{display:block;animation:jg-on 0s 2.4s both}
-.jg-go:checked~.lz-stage .jg-hint{visibility:hidden}
-.jg-go:checked~.jg-result{animation:jg-show 0s 2.6s forwards,jg-pop .55s cubic-bezier(.2,1.4,.4,1) 2.6s forwards}
+.jg-g[open]>.jg-conf{visibility:visible}.jg-g[open]>.jg-conf i{animation:jg-burst 1.6s cubic-bezier(.15,.7,.3,1) 2.4s both}
+.jg-g[open] .lz-stage .jg-cta{animation:none;pointer-events:none}
+.jg-g[open] .lz-stage .jg-cta .a{display:none}
+.jg-g[open] .lz-stage .jg-cta .b{display:block;animation:jg-off 0s 2.4s forwards}
+.jg-g[open] .lz-stage .jg-cta .c{display:block;animation:jg-on 0s 2.4s both}
+.jg-g[open] .lz-stage .jg-hint{visibility:hidden}
+.jg-g[open]>.jg-result{animation:jg-show 0s 2.6s forwards,jg-pop .55s cubic-bezier(.2,1.4,.4,1) 2.6s forwards}
 
 .lz-stage{position:relative}
 .lz-box{position:relative;width:min(80vw,320px);aspect-ratio:.82;margin:26px auto 18px;border-radius:18px;
@@ -79,33 +79,32 @@
   filter:drop-shadow(0 4px 6px rgba(0,0,0,.5));animation:lz-wig 1.3s ease-in-out infinite;-webkit-tap-highlight-color:transparent}
 @keyframes lz-wig{0%,100%{transform:translateX(-50%) rotate(-8deg)}50%{transform:translateX(-50%) rotate(8deg) scale(1.06)}}
 .lz-tap{position:absolute;inset:0;z-index:4;cursor:pointer}
-.jg-go:checked~.lz-stage .lz-bow{animation:lz-bow .7s ease-in forwards}
+.jg-g[open] .lz-stage .lz-bow{animation:lz-bow .7s ease-in forwards}
 @keyframes lz-bow{to{transform:translateX(-50%) translateY(-60px) rotate(40deg) scale(.4);opacity:0}}
-.jg-go:checked~.lz-stage .lz-cord line{animation:lz-unlace .9s .5s ease-in forwards}
+.jg-g[open] .lz-stage .lz-cord line{animation:lz-unlace .9s .5s ease-in forwards}
 @keyframes lz-unlace{to{stroke-dashoffset:40;opacity:.2}}
-.jg-go:checked~.lz-stage .lz-lace circle{animation:lz-fade .4s 1.3s forwards}
+.jg-g[open] .lz-stage .lz-lace circle{animation:lz-fade .4s 1.3s forwards}
 @keyframes lz-fade{to{opacity:0}}
-.jg-go:checked~.lz-stage .lz-l{animation:lz-open-l .9s 1.4s cubic-bezier(.5,0,.3,1) forwards}
-.jg-go:checked~.lz-stage .lz-r{animation:lz-open-r .9s 1.4s cubic-bezier(.5,0,.3,1) forwards}
+.jg-g[open] .lz-stage .lz-l{animation:lz-open-l .9s 1.4s cubic-bezier(.5,0,.3,1) forwards}
+.jg-g[open] .lz-stage .lz-r{animation:lz-open-r .9s 1.4s cubic-bezier(.5,0,.3,1) forwards}
 @keyframes lz-open-l{to{transform:translateX(-102%)}}@keyframes lz-open-r{to{transform:translateX(102%)}}
-.jg-go:checked~.lz-stage .lz-tap{display:none}
+.jg-g[open] .lz-stage .lz-tap{display:none}
 </style>
 <div class="jg">
- <input type="checkbox" id="jg-go-4" class="jg-go" aria-label="Desatar el lazo">
  <p class="jg-kicker">🎀 ¡LA ÚLTIMA SORPRESA<span class="jg-nm">{first-name}</span>!</p>
  <h1 class="jg-h1">Desatá el lazo del corsé y <em>descubrí tu regalo</em></h1>
  <p class="jg-sub">Adentro hay un descuento para <b>{product-title}</b>. Vale solo en esta página: si la cerrás, se pierde.</p>
- <div class="lz-stage">
+ <details class="jg-g"><summary class="jg-sum lz-stage">
   <div class="lz-box">
    <div class="lz-prize"><b>50%</b><span>★ OFF ★</span><small>ya aplicado a tu pedido</small></div>
    <div class="lz-half lz-l"></div><div class="lz-half lz-r"></div>
    <svg class="lz-lace" viewBox="0 0 100 160" preserveAspectRatio="none" aria-hidden="true"><g class="lz-cord" stroke="#F8F3ED" stroke-width="2.6" stroke-linecap="round" fill="none"><line x1="38" y1="18" x2="62" y2="44"/><line x1="62" y1="18" x2="38" y2="44"/><line x1="38" y1="44" x2="62" y2="70"/><line x1="62" y1="44" x2="38" y2="70"/><line x1="38" y1="70" x2="62" y2="96"/><line x1="62" y1="70" x2="38" y2="96"/><line x1="38" y1="96" x2="62" y2="122"/><line x1="62" y1="96" x2="38" y2="122"/><line x1="38" y1="122" x2="62" y2="148"/><line x1="62" y1="122" x2="38" y2="148"/></g><g fill="#D8B785" stroke="#7a5412" stroke-width="1"><circle cx="38" cy="18" r="3.2"/><circle cx="62" cy="18" r="3.2"/><circle cx="38" cy="44" r="3.2"/><circle cx="62" cy="44" r="3.2"/><circle cx="38" cy="70" r="3.2"/><circle cx="62" cy="70" r="3.2"/><circle cx="38" cy="96" r="3.2"/><circle cx="62" cy="96" r="3.2"/><circle cx="38" cy="122" r="3.2"/><circle cx="62" cy="122" r="3.2"/><circle cx="38" cy="148" r="3.2"/><circle cx="62" cy="148" r="3.2"/></g></svg>
-   <label for="jg-go-4" class="lz-tap" aria-hidden="true"></label>
+   <span class="lz-tap" aria-hidden="true"></span>
   </div>
-  <label for="jg-go-4" class="lz-bow" aria-hidden="true">🎀</label>
-  <label for="jg-go-4" class="jg-cta"><span class="a">🎀 DESATAR EL LAZO</span><span class="b">✨ Desatando…</span><span class="c">✅ ¡Ganaste! Mirá abajo ↓</span></label>
+  <span class="lz-bow" aria-hidden="true">🎀</span>
+  <span class="jg-cta"><span class="a">🎀 DESATAR EL LAZO</span><span class="b">✨ Desatando…</span><span class="c">✅ ¡Ganaste! Mirá abajo ↓</span></span>
   <p class="jg-hint">👆 Tocá el moño o el botón · Todos los lazos tienen premio</p>
- </div>
+ </summary>
  <div class="jg-result"><div class="jg-res-in">
    <p class="jg-won">🎉 ¡TU REGALO: 50% OFF!</p>
    <p class="jg-wonsub">El descuento máximo, ya aplicado a tu pedido.</p>
@@ -116,6 +115,7 @@
    <p class="jg-timer">⏰ Precio reservado por: <b>{timer}</b></p>
    <p class="jg-trust">🔒 Pago seguro · 🛡️ Garantía de 7 días · ⚡ Acceso inmediato · ✓ Pago único</p>
   </div></div>
- <button type="button" class="jg-no" data-pp-decline>No, gracias. Sigo de a una</button>
  <div class="jg-conf" aria-hidden="true"><i style="background:#D8B785;--x:120px;--y:140px;--r:0deg"></i><i style="background:#F8F3ED;--x:-116px;--y:246px;--r:97deg"></i><i style="background:#1f8a4c;--x:17px;--y:-53px;--r:194deg"></i><i style="background:#ffffff;--x:141px;--y:323px;--r:291deg"></i><i style="background:#c0392b;--x:-264px;--y:93px;--r:388deg"></i><i style="background:#f0d49a;--x:122px;--y:62px;--r:485deg"></i><i style="background:#D8B785;--x:-47px;--y:316px;--r:582deg"></i><i style="background:#F8F3ED;--x:-101px;--y:-54px;--r:679deg"></i><i style="background:#1f8a4c;--x:241px;--y:228px;--r:56deg"></i><i style="background:#ffffff;--x:-123px;--y:191px;--r:153deg"></i><i style="background:#c0392b;--x:72px;--y:-14px;--r:250deg"></i><i style="background:#f0d49a;--x:62px;--y:337px;--r:347deg"></i><i style="background:#D8B785;--x:-211px;--y:18px;--r:444deg"></i><i style="background:#F8F3ED;--x:118px;--y:114px;--r:541deg"></i><i style="background:#1f8a4c;--x:-91px;--y:269px;--r:638deg"></i><i style="background:#ffffff;--x:-25px;--y:-53px;--r:15deg"></i><i style="background:#c0392b;--x:178px;--y:289px;--r:112deg"></i><i style="background:#f0d49a;--x:-269px;--y:152px;--r:209deg"></i><i style="background:#D8B785;--x:103px;--y:37px;--r:306deg"></i><i style="background:#F8F3ED;--x:-8px;--y:323px;--r:403deg"></i><i style="background:#1f8a4c;--x:-141px;--y:-29px;--r:500deg"></i><i style="background:#ffffff;--x:255px;--y:174px;--r:597deg"></i><i style="background:#c0392b;--x:-110px;--y:217px;--r:694deg"></i><i style="background:#f0d49a;--x:37px;--y:-27px;--r:71deg"></i><i style="background:#D8B785;--x:104px;--y:320px;--r:168deg"></i><i style="background:#F8F3ED;--x:-234px;--y:66px;--r:265deg"></i><i style="background:#1f8a4c;--x:111px;--y:88px;--r:362deg"></i><i style="background:#ffffff;--x:-61px;--y:287px;--r:459deg"></i><i style="background:#c0392b;--x:-67px;--y:-44px;--r:556deg"></i><i style="background:#f0d49a;--x:207px;--y:248px;--r:653deg"></i><i style="background:#D8B785;--x:-261px;--y:210px;--r:30deg"></i><i style="background:#F8F3ED;--x:79px;--y:16px;--r:127deg"></i><i style="background:#1f8a4c;--x:32px;--y:321px;--r:224deg"></i><i style="background:#ffffff;--x:-175px;--y:5px;--r:321deg"></i><i style="background:#c0392b;--x:257px;--y:118px;--r:418deg"></i><i style="background:#f0d49a;--x:-91px;--y:240px;--r:515deg"></i></div>
+ </details>
+ <button type="button" class="jg-no" data-pp-decline>No, gracias. Sigo de a una</button>
 </div>
