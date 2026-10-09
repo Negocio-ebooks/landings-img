@@ -1,4 +1,4 @@
-<!-- Post-compra CDA-AR · DownSell 3 (50%) · TRAGAMONEDAS · CSS puro con <details>, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
+<!-- Post-compra CDA-AR · DownSell 3 (50%) · TRAGAMONEDAS · CSS puro con <details>; JS solo como extra (sonido). data-pp-accept = SÍ, data-pp-decline = NO. -->
 <style>.jg-sum{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}.jg-sum::-webkit-details-marker{display:none}.jg-sum::marker{content:""}.jg-g[open]>.jg-sum{pointer-events:none}
 .jg,.jg *{box-sizing:border-box}
 .jg{--bd:#43161C;--bd2:#2C1016;--cr:#F8F3ED;--au:#D8B785;--au2:#B58E5E;--ok:#1f8a4c;--ok2:#166534;
@@ -103,3 +103,32 @@
  </details>
  <button type="button" class="jg-no" data-pp-decline>No, gracias. Sigo buscando clientas nuevas</button>
 </div>
+<script>
+(function(){
+  var st=document.querySelector('.sl-stage'); if(!st) return;
+  var det=st.closest('details'), sum=st, AC=window.AudioContext||window.webkitAudioContext; if(!AC||!det) return;
+  var ac=null, sonado=false, DUR=[1.6,2.3,3.0], CELDAS=17;
+  function bez(p1,p2,s){var u=1-s;return 3*u*u*s*p1+3*u*s*s*p2+s*s*s;}
+  function pasos(d){var out=[],prev=0;for(var i=1;i<=2000;i++){var s=i/2000,t=bez(.2,.25,s)*d,y=bez(.65,1.08,s)*CELDAS,k=Math.floor(y+.5);
+    if(k!==prev){out.push(t);prev=k;}}return out;}
+  function tono(tipo,f,at,vol,d,f2){var o=ac.createOscillator(),g=ac.createGain();o.type=tipo;o.frequency.setValueAtTime(f,at);
+    if(f2)o.frequency.exponentialRampToValueAtTime(f2,at+d);
+    g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(vol,at+.006);g.gain.exponentialRampToValueAtTime(.0001,at+d);
+    o.connect(g);g.connect(ac.destination);o.start(at);o.stop(at+d+.05);}
+  sum.addEventListener('click',function(){
+    if(sonado||det.open) return; sonado=true;
+    try{ ac=new AC(); if(ac.resume) ac.resume(); }catch(e){ return; }
+    var t0=ac.currentTime+.03, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    tono('sawtooth',320,t0,.05,.25,90);                         /* palanca */
+    if(!reduce){
+      var todos=[];
+      for(var r=0;r<3;r++){var p=pasos(DUR[r]);for(var i=0;i<p.length;i++)todos.push(p[i]);}
+      todos.sort(function(a,b){return a-b;});
+      var ult=-1;for(var j=0;j<todos.length;j++){if(todos[j]-ult>=.05){tono('square',900+((j*37)%160),t0+todos[j],.03,.035);ult=todos[j];}}
+      for(var q=0;q<3;q++){tono('triangle',180,t0+DUR[q],.16,.14,90);}   /* frena cada rodillo */
+    }
+    var fin=t0+(reduce?.1:DUR[2]+.15), notas=[523.25,659.25,783.99,1046.5,783.99,1046.5,1318.5];
+    for(var n=0;n<notas.length;n++){tono('sine',notas[n],fin+n*.09,.13,n<notas.length-1?.18:.9);}
+  });
+})();
+</script>
