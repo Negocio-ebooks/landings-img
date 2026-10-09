@@ -1,4 +1,4 @@
-<!-- Post-compra CDA-AR · DownSell 2 (50%) · RASCA Y GANA · CSS puro con <details>, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
+<!-- Post-compra CDA-AR · DownSell 2 (50%) · RASCA Y GANA · CSS puro con <details>; JS solo como extra (raspado con el dedo). data-pp-accept = SÍ, data-pp-decline = NO. -->
 <style>.jg-sum{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}.jg-sum::-webkit-details-marker{display:none}.jg-sum::marker{content:""}.jg-g[open]>.jg-sum{pointer-events:none}
 .jg,.jg *{box-sizing:border-box}
 .jg{--bd:#43161C;--bd2:#2C1016;--cr:#F8F3ED;--au:#D8B785;--au2:#B58E5E;--ok:#1f8a4c;--ok2:#166534;
@@ -82,7 +82,7 @@
 .jg-g[open] .rs-stage .jg-cta .c{display:block;animation:jg-on 0s 2.4s both}
 .jg-g[open] .rs-stage .jg-hint{visibility:hidden}
 .jg-g[open]>.jg-result{animation:jg-show 0s 2.6s forwards,jg-pop .55s cubic-bezier(.2,1.4,.4,1) 2.6s forwards}
-</style>
+.rs-cv{position:absolute;inset:8px;width:calc(100% - 16px);height:calc(100% - 16px);border-radius:14px;z-index:4;touch-action:none;cursor:grab;transition:opacity .45s}.rs-js .rs-foil{visibility:hidden!important}.rs-fast .rs-foil,.rs-fast .rs-coin{display:none!important}.rs-fast .jg-g[open]>.jg-result{animation:jg-show 0s .35s forwards,jg-pop .55s cubic-bezier(.2,1.4,.4,1) .35s forwards!important}.rs-fast .jg-g[open] .jg-cta .b{animation:jg-off 0s .1s forwards!important}.rs-fast .jg-g[open] .jg-cta .c{animation:jg-on 0s .1s both!important}.rs-fast .jg-g[open]>.jg-conf i{animation-delay:.15s!important}</style>
 <div class="jg">
  <p class="jg-kicker">🎁 ¡UN REGALO MÁS<span class="jg-nm">{first-name}</span>!</p>
  <h1 class="jg-h1">Raspá la tarjeta y descubrí <em>tu descuento escondido</em></h1>
@@ -110,3 +110,52 @@
  </details>
  <button type="button" class="jg-no" data-pp-decline>No, gracias. Me arreglo sin ayuda</button>
 </div>
+<script>
+(function(){
+  var card=document.querySelector('.rs-card'); if(!card) return;
+  var det=card.closest('details'), jg=card.closest('.jg'), foil=card.querySelector('.rs-foil');
+  var c=document.createElement('canvas'); if(!c.getContext) return;
+  c.className='rs-cv'; c.setAttribute('aria-hidden','true'); card.appendChild(c); jg.classList.add('rs-js');
+  var x=c.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2), W=0, H=0, done=false, down=false, n=0;
+  function paint(){
+    W=c.clientWidth; H=c.clientHeight; if(!W||!H) return;
+    c.width=Math.round(W*dpr); c.height=Math.round(H*dpr); x.setTransform(dpr,0,0,dpr,0,0);
+    var g=x.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#d9d9d9'); g.addColorStop(.22,'#f7f7f7'); g.addColorStop(.45,'#b8b8b8'); g.addColorStop(.62,'#efefef'); g.addColorStop(1,'#a9a9a9');
+    x.globalCompositeOperation='source-over'; x.fillStyle=g; x.fillRect(0,0,W,H);
+    x.strokeStyle='rgba(255,255,255,.35)'; x.lineWidth=1;
+    for(var i=-H;i<W;i+=7){x.beginPath();x.moveTo(i,H);x.lineTo(i+H*.47,0);x.stroke();}
+    x.fillStyle='#5b5b5b'; x.textAlign='center'; x.textBaseline='middle';
+    x.font='800 17px Arial,sans-serif'; x.fillText('RASPÁ CON EL DEDO',W/2,H/2+14);
+    x.font='34px Arial,sans-serif'; x.fillText('👆',W/2,H/2-20);
+  }
+  paint(); window.addEventListener('resize',function(){ if(!done && n<3) paint(); });
+  function pos(e){var r=c.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};}
+  var last=null;
+  function scratch(p){
+    x.globalCompositeOperation='destination-out'; x.lineCap='round'; x.lineJoin='round'; x.lineWidth=46;
+    x.beginPath(); if(last){x.moveTo(last.x,last.y);} else {x.moveTo(p.x,p.y);} x.lineTo(p.x+.1,p.y+.1); x.stroke(); last=p;
+    if(++n%6===0) check();
+  }
+  function check(){
+    try{
+      var d=x.getImageData(0,0,c.width,c.height).data, clear=0, tot=0, step=4*24;
+      for(var i=3;i<d.length;i+=step){tot++; if(d[i]<30) clear++;}
+      if(tot && clear/tot>0.45) win();
+    }catch(e){ if(n>40) win(); }
+  }
+  function win(){
+    if(done) return; done=true; jg.classList.add('rs-fast');
+    c.style.opacity='0'; det.open=true; setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); },500);
+  }
+  function stop(e){ e.preventDefault(); e.stopPropagation(); }
+  c.addEventListener('click',stop);
+  c.addEventListener('pointerdown',function(e){ stop(e); down=true; last=null; try{c.setPointerCapture(e.pointerId);}catch(_){ } scratch(pos(e)); });
+  c.addEventListener('pointermove',function(e){ if(!down) return; stop(e); scratch(pos(e)); });
+  function up(){ if(down){ down=false; last=null; check(); } }
+  c.addEventListener('pointerup',up); c.addEventListener('pointercancel',up);
+  /* si toca el botón grande, se raspa sola (animación CSS): sacamos la capa del dedo */
+  det.addEventListener('toggle',function(){ if(det.open && !done){ done=true; c.style.opacity='0'; setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); },500); } });
+  var h=jg.querySelector('.jg-hint'); if(h) h.textContent='👆 Raspá con el dedo (o tocá el botón) · Todas las tarjetas ganan';
+})();
+</script>
