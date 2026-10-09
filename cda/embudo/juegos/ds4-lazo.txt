@@ -1,4 +1,4 @@
-<!-- Post-compra CDA-AR · DownSell 4 (50%) · DESATÁ EL LAZO DEL CORSÉ · CSS puro con <details>, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
+<!-- Post-compra CDA-AR · DownSell 4 (50%) · DESATÁ EL LAZO DEL CORSÉ · CSS puro con <details>; JS solo como extra (sonido). data-pp-accept = SÍ, data-pp-decline = NO. -->
 <style>.jg-sum{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}.jg-sum::-webkit-details-marker{display:none}.jg-sum::marker{content:""}.jg-g[open]>.jg-sum{pointer-events:none}
 .jg,.jg *{box-sizing:border-box}
 .jg{--bd:#43161C;--bd2:#2C1016;--cr:#F8F3ED;--au:#D8B785;--au2:#B58E5E;--ok:#1f8a4c;--ok2:#166534;
@@ -119,3 +119,33 @@
  </details>
  <button type="button" class="jg-no" data-pp-decline>No, gracias. Sigo de a una</button>
 </div>
+<script>
+(function(){
+  var st=document.querySelector('.lz-stage'); if(!st) return;
+  var det=st.closest('details'), AC=window.AudioContext||window.webkitAudioContext; if(!AC||!det) return;
+  var ac=null, sonado=false;
+  function tono(tipo,f,at,vol,d,f2){var o=ac.createOscillator(),g=ac.createGain();o.type=tipo;o.frequency.setValueAtTime(f,at);
+    if(f2)o.frequency.exponentialRampToValueAtTime(f2,at+d);
+    g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(vol,at+.01);g.gain.exponentialRampToValueAtTime(.0001,at+d);
+    o.connect(g);g.connect(ac.destination);o.start(at);o.stop(at+d+.05);}
+  function soplido(at,d,vol){ /* ruido filtrado: las mitades del corsé que se abren */
+    var n=Math.floor(ac.sampleRate*d),b=ac.createBuffer(1,n,ac.sampleRate),x=b.getChannelData(0);
+    for(var i=0;i<n;i++)x[i]=(Math.random()*2-1);
+    var s=ac.createBufferSource(),f=ac.createBiquadFilter(),g=ac.createGain();s.buffer=b;f.type='bandpass';
+    f.frequency.setValueAtTime(600,at);f.frequency.exponentialRampToValueAtTime(2400,at+d);f.Q.value=.8;
+    g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(vol,at+d*.3);g.gain.exponentialRampToValueAtTime(.0001,at+d);
+    s.connect(f);f.connect(g);g.connect(ac.destination);s.start(at);s.stop(at+d+.05);}
+  st.addEventListener('click',function(){
+    if(sonado||det.open) return; sonado=true;
+    try{ ac=new AC(); if(ac.resume) ac.resume(); }catch(e){ return; }
+    var t0=ac.currentTime+.03, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){
+      tono('sine',420,t0,.16,.22,1300);                          /* pop del moño */
+      for(var i=0;i<10;i++){tono('triangle',1500-i*70,t0+.5+i*.09,.05,.05);}   /* cordón por los ojales */
+      soplido(t0+1.4,.9,.09);                                    /* se abren las mitades */
+    }
+    var fin=t0+(reduce?.1:2.35), notas=[1046.5,1318.5,1568,2093];
+    for(var n=0;n<notas.length;n++){tono('sine',notas[n],fin+n*.07,.11,.7);}   /* brillo del premio */
+  });
+})();
+</script>
