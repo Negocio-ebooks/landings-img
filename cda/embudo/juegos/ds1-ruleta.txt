@@ -1,4 +1,4 @@
-<!-- Post-compra CDA-AR · DownSell 1 (50%) · RULETA · CSS puro con <details>, sin JavaScript. data-pp-accept = SÍ, data-pp-decline = NO. -->
+<!-- Post-compra CDA-AR · DownSell 1 (50%) · RULETA · CSS puro con <details>; JS solo como extra (sonido). data-pp-accept = SÍ, data-pp-decline = NO. -->
 <style>.jg-sum{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}.jg-sum::-webkit-details-marker{display:none}.jg-sum::marker{content:""}.jg-g[open]>.jg-sum{pointer-events:none}
 .jg,.jg *{box-sizing:border-box}
 .jg{--bd:#43161C;--bd2:#2C1016;--cr:#F8F3ED;--au:#D8B785;--au2:#B58E5E;--ok:#1f8a4c;--ok2:#166534;
@@ -111,3 +111,30 @@
  </details>
  <button type="button" class="jg-no" data-pp-decline>No, gracias. Sigo cobrando a ojo</button>
 </div>
+<script>
+(function(){
+  var det=document.querySelector('.rl-stage') && document.querySelector('.rl-stage').closest('details'); if(!det) return;
+  var sum=det.querySelector('summary'), AC=window.AudioContext||window.webkitAudioContext; if(!AC||!sum) return;
+  var ac=null, sonado=false, DUR=5.6, A0=180, A1=2525, SEG=45;
+  function bez(p1,p2,s){var u=1-s;return 3*u*u*s*p1+3*u*s*s*p2+s*s*s;}
+  function ticks(){ /* tiempos (s) en que la flecha cruza un borde de casillero */
+    var out=[], prev=Math.floor(A0/SEG);
+    for(var i=1;i<=3000;i++){var s=i/3000, t=bez(.12,.08,s)*DUR, a=A0+(A1-A0)*bez(.62,1,s), k=Math.floor((a-SEG/2)/SEG);
+      if(k!==prev){out.push(t);prev=k;}}
+    return out;
+  }
+  function tic(at){var o=ac.createOscillator(),g=ac.createGain();o.type='triangle';o.frequency.value=1500;
+    g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.08,at+.004);g.gain.exponentialRampToValueAtTime(.0001,at+.05);
+    o.connect(g);g.connect(ac.destination);o.start(at);o.stop(at+.06);}
+  function nota(f,at,d){var o=ac.createOscillator(),g=ac.createGain();o.type='sine';o.frequency.value=f;
+    g.gain.setValueAtTime(.0001,at);g.gain.exponentialRampToValueAtTime(.14,at+.02);g.gain.exponentialRampToValueAtTime(.0001,at+d);
+    o.connect(g);g.connect(ac.destination);o.start(at);o.stop(at+d+.05);}
+  sum.addEventListener('click',function(){
+    if(sonado||det.open) return; sonado=true;
+    try{ ac=new AC(); if(ac.resume) ac.resume(); }catch(e){ return; }
+    var t0=ac.currentTime+.03, reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduce){ var ts=ticks(), ult=-1; for(var i=0;i<ts.length;i++){ if(ts[i]-ult>=.06){ tic(t0+ts[i]); ult=ts[i]; } } }
+    var fin=t0+(reduce?.1:DUR); nota(523.25,fin,.5); nota(659.25,fin+.12,.5); nota(783.99,fin+.24,.8); nota(1046.5,fin+.36,1);
+  });
+})();
+</script>
