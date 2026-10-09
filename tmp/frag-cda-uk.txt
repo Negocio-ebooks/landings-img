@@ -1,0 +1,479 @@
+<style>
+html { scroll-behavior:smooth; }
+body { margin:0; }
+#cda-page { --wine:#43161C; --wine-deep:#2C1016; --cream:#EFE6DD; --paper:#F8F3ED; --gold:#B58E5E; --walnut:#65432D; --ink:#1C1817; --muted:#66584F; --line:#CEBCA8; color:var(--ink); background:var(--cream); font:400 16px/1.7 Arial,Helvetica,sans-serif; -webkit-font-smoothing:antialiased; overflow-wrap:break-word; }
+#cda-page *, #cda-page *::before, #cda-page *::after { box-sizing:border-box; }
+#cda-page [hidden] { display:none !important; }
+#cda-page h1, #cda-page h2, #cda-page h3, #cda-page p, #cda-page figure { margin:0; }
+#cda-page h1, #cda-page h2, #cda-page h3 { font-family:Georgia,'Times New Roman',serif; font-weight:400; text-wrap:balance; }
+#cda-page h1 { font-size:clamp(2.65rem,8.6vw,5.25rem); line-height:1.04; letter-spacing:-.045em; }
+#cda-page h2 { font-size:clamp(2.15rem,6.5vw,3.7rem); line-height:1.13; letter-spacing:-.035em; }
+#cda-page h3 { font-size:1.65rem; line-height:1.2; }
+#cda-page em { font-family:Georgia,'Times New Roman',serif; font-weight:400; }
+#cda-page a { color:inherit; }
+#cda-page img { display:block; width:100%; max-width:100%; height:auto; }
+#cda-page button, #cda-page a { -webkit-tap-highlight-color:transparent; }
+#cda-page button { font:inherit; }
+#cda-page a:focus-visible, #cda-page button:focus-visible, #cda-page summary:focus-visible { outline:3px solid var(--gold); outline-offset:5px; }
+#cda-page .cda-wrap { width:min(1160px,calc(100% - 40px)); margin-inline:auto; }
+#cda-page .cda-section { padding:66px 0; }
+#cda-page .cda-kicker { display:block; font-size:.8125rem; letter-spacing:.16em; line-height:1.6; font-weight:700; text-transform:uppercase; margin-bottom:16px; color:var(--walnut); }
+#cda-page .cda-intro { max-width:710px; margin-bottom:32px; }
+#cda-page .cda-intro p { margin-top:20px; color:var(--muted); }
+#cda-page .cda-small { font-size:.875rem; line-height:1.65; }
+#cda-page .cda-muted { color:var(--muted); }
+#cda-page .cda-button { min-height:56px; display:inline-flex; justify-content:center; align-items:center; gap:14px; padding:17px 24px; border:1px solid var(--wine); border-radius:3px; background:var(--wine); color:var(--paper); text-align:center; text-decoration:none; font-weight:700; font-size:.9375rem; line-height:1.4; transition:background .2s,border-color .2s; }
+#cda-page .cda-button:hover { background:#60232D; border-color:#60232D; }
+#cda-page .cda-arrow { font-size:1.35rem; line-height:1; }
+#cda-page .cda-text-link { text-decoration:underline; text-underline-offset:5px; font-size:.9375rem; font-weight:700; }
+#cda-page .cda-rule { display:flex; gap:16px; align-items:center; color:var(--gold); margin:26px 0; }
+#cda-page .cda-rule::before, #cda-page .cda-rule::after { content:""; height:1px; flex:1; background:currentColor; opacity:.6; }
+#cda-page .cda-skip { position:absolute; left:12px; top:-120px; z-index:20; padding:12px 20px; background:var(--paper); color:var(--wine); }
+#cda-page .cda-skip:focus { top:12px; }
+#cda-page .cda-header { background:var(--wine-deep); color:var(--cream); }
+#cda-page .cda-header-inner { display:flex; align-items:center; justify-content:space-between; gap:16px; padding-block:20px; border-bottom:1px solid #765043; }
+#cda-page .cda-brand { font-family:Georgia,'Times New Roman',serif; font-size:1.35rem; line-height:1.1; text-decoration:none; letter-spacing:.015em; }
+#cda-page .cda-brand span { display:block; font:400 .75rem/1.5 Arial,Helvetica,sans-serif; letter-spacing:.23em; text-transform:uppercase; margin-top:6px; color:#CFB69A; }
+#cda-page .cda-header-note { color:#E4CEB4; font-size:.75rem; line-height:1.45; letter-spacing:.09em; text-transform:uppercase; text-align:right; max-width:125px; }
+#cda-page .cda-hero { color:var(--cream); background:radial-gradient(ellipse at 95% 15%,#65312F 0,transparent 58%),var(--wine-deep); padding:42px 0 48px; }
+#cda-page .cda-hero-layout { display:grid; grid-template-areas:'copy' 'video' 'actions'; gap:27px; }
+#cda-page .cda-hero-copy { grid-area:copy; }
+#cda-page .cda-hero .cda-kicker { color:#D1B18A; }
+#cda-page .cda-hero h1 em { color:#D8B785; display:block; }
+#cda-page .cda-hero-description { margin-top:24px; max-width:600px; color:#E4D5C8; font-size:1.0625rem; }
+#cda-page .cda-hero-points { list-style:none; padding:0; margin:23px 0 0; display:flex; flex-wrap:wrap; gap:9px 19px; font-size:.875rem; color:#F0E5D7; }
+#cda-page .cda-hero-points li::before { content:'✓'; color:#D1B18A; margin-right:8px; }
+#cda-page .cda-video-block { grid-area:video; margin:0; align-self:center; min-width:0; width:100%; }
+#cda-page .cda-video-frame { padding:7px; border:1px solid #AC865C; background:#1C1313; box-shadow:0 14px 32px #16070A40; }
+#cda-page .cda-video-frame video { display:block; width:100%; height:auto; max-height:620px; object-fit:contain; background:#1C1313; }
+#cda-page .cda-video-caption { display:flex; justify-content:space-between; gap:15px; align-items:center; margin-top:12px; color:#D9C8B9; font-size:.8125rem; }
+#cda-page .cda-video-caption span:first-child { text-transform:uppercase; letter-spacing:.1em; }
+#cda-page .cda-hero-actions { grid-area:actions; display:flex; flex-direction:column; align-items:stretch; gap:17px; }
+#cda-page .cda-hero .cda-button { background:var(--cream); color:var(--wine); border-color:var(--cream); }
+#cda-page .cda-hero .cda-button:hover { background:#FFF9F0; }
+#cda-page .cda-hero-price { display:flex; align-items:center; flex-wrap:wrap; justify-content:center; gap:10px 15px; }
+#cda-page .cda-hero-price strong { font:400 1.85rem/1.2 Georgia,'Times New Roman',serif; color:#E2C395; overflow-wrap:anywhere; }
+#cda-page .cda-hero-price span { font-size:.75rem; color:#DCCBB9; text-transform:uppercase; letter-spacing:.07em; }
+#cda-page .cda-hero-actions .cda-text-link { text-align:center; color:#E4D5C8; }
+#cda-page .cda-collection-strip { border-bottom:1px solid var(--line); background:var(--paper); }
+#cda-page .cda-strip-inner { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); padding-block:23px; }
+#cda-page .cda-strip-item { text-align:center; padding-inline:8px; border-right:1px solid var(--line); }
+#cda-page .cda-strip-item:last-child { border:0; }
+#cda-page .cda-strip-item strong { display:block; font:400 1.75rem/1.2 Georgia,'Times New Roman',serif; color:var(--wine); }
+#cda-page .cda-strip-item span { display:block; font-size:.8125rem; margin-top:5px; line-height:1.5; color:var(--muted); }
+#cda-page .cda-story-grid { display:grid; gap:32px; align-items:center; }
+#cda-page .cda-story-copy p { margin-top:20px; color:var(--muted); }
+#cda-page .cda-story-photo { background:var(--paper); padding:10px; border:1px solid var(--line); width:min(100%,440px); margin-inline:auto; }
+#cda-page .cda-story-photo figcaption { margin:13px 6px 6px; color:var(--muted); font-size:.8125rem; }
+#cda-page .cda-editorial-note { border-left:2px solid var(--gold); margin-top:26px; padding-left:21px; font:italic 1.6rem/1.4 Georgia,'Times New Roman',serif; color:var(--wine); }
+#cda-page .cda-collection { background:var(--paper); border-block:1px solid var(--line); }
+#cda-page .cda-plates { display:grid; gap:23px; }
+#cda-page .cda-plate { min-width:0; border-top:1px solid var(--gold); padding-top:15px; }
+#cda-page .cda-plate-label { display:flex; justify-content:space-between; gap:10px; margin-bottom:13px; color:var(--walnut); font-size:.8125rem; letter-spacing:.055em; }
+#cda-page .cda-plate-image { background:#FFF; padding:14px; border:1px solid #E0D6CA; display:flex; align-items:center; justify-content:center; }
+#cda-page .cda-plate-image img { object-fit:contain; max-width:430px; height:auto; }
+#cda-page .cda-plate h3 { margin-top:20px; color:var(--wine); }
+#cda-page .cda-plate p { margin-top:9px; color:var(--muted); }
+#cda-page .cda-plate-note { margin-top:27px; color:var(--muted); font-size:.8125rem; }
+#cda-page .cda-techniques { background:var(--wine); color:var(--cream); }
+#cda-page .cda-technique-grid { display:grid; gap:36px; align-items:center; }
+#cda-page .cda-techniques .cda-kicker { color:#D8B785; }
+#cda-page .cda-techniques h2 { margin-bottom:25px; }
+#cda-page .cda-technique-photo { width:min(100%,430px); padding:9px; border:1px solid #9B7755; margin-inline:auto; }
+#cda-page .cda-technique-photo figcaption { font-size:.8125rem; color:#E2CFBD; padding:12px 6px 4px; }
+#cda-page .cda-skill-list { padding:0; margin:0; list-style:none; }
+#cda-page .cda-skill-list li { display:grid; grid-template-columns:32px 1fr; gap:12px; padding:19px 0; border-bottom:1px solid #7B4F49; }
+#cda-page .cda-skill-list li:first-child { border-top:1px solid #7B4F49; }
+#cda-page .cda-skill-list .cda-index { font:italic 1.2rem/1.4 Georgia,'Times New Roman',serif; color:#D8B785; }
+#cda-page .cda-skill-list strong { display:block; font-weight:700; margin-bottom:4px; }
+#cda-page .cda-skill-list p { color:#E0CCC0; font-size:.9375rem; }
+#cda-page .cda-offer-section { padding:70px 0; background:var(--cream); scroll-margin-top:20px; }
+#cda-page .cda-offer { border:1px solid var(--gold); padding:8px; background:var(--paper); box-shadow:0 15px 45px #65432D0C; }
+#cda-page .cda-offer-inner { border:1px solid #DDCDB9; padding:27px 18px; }
+#cda-page .cda-offer-heading { text-align:center; max-width:680px; margin:0 auto 30px; }
+#cda-page .cda-offer-heading p { margin-top:18px; color:var(--muted); }
+#cda-page .cda-offer-grid { display:grid; gap:26px; }
+#cda-page .cda-cover { padding:7px; border:1px solid var(--line); background:#E9DDD0; }
+#cda-page .cda-cover img { aspect-ratio:2/3; object-fit:contain; }
+#cda-page .cda-cover figcaption { padding:12px 6px 5px; color:var(--muted); font-size:.8125rem; text-align:center; }
+#cda-page .cda-checklist { list-style:none; padding:0; margin:22px 0 0; }
+#cda-page .cda-checklist li { position:relative; padding-left:26px; margin:10px 0; }
+#cda-page .cda-checklist li::before { content:'✓'; position:absolute; left:0; color:var(--wine); font-weight:700; }
+#cda-page .cda-price-panel { background:var(--cream); border-top:3px solid var(--wine); padding:26px 20px; align-self:start; text-align:center; }
+#cda-page .cda-price-label { color:var(--walnut); letter-spacing:.12em; font-size:.8125rem; font-weight:700; text-transform:uppercase; }
+#cda-page .cda-old-price { display:block; margin-top:12px; font-size:.9375rem; color:#78665A; }
+#cda-page .cda-price { display:block; color:var(--wine); font:400 clamp(2.25rem,7vw,3.5rem)/1.16 Georgia,'Times New Roman',serif; letter-spacing:-.035em; margin:12px 0; overflow-wrap:anywhere; }
+#cda-page .cda-savings { font-size:.875rem; color:var(--walnut); margin-bottom:14px; }
+#cda-page .cda-price-panel .cda-button { width:100%; margin:21px 0 14px; }
+#cda-page .cda-payment-note { font-size:.8125rem; color:var(--muted); }
+#cda-page .cda-digital-note { margin-top:18px; padding-top:16px; border-top:1px solid var(--line); font-size:.875rem; color:var(--muted); }
+#cda-page .cda-bonuses { background:var(--paper); }
+#cda-page .cda-bonus-grid { display:grid; gap:36px; }
+#cda-page .cda-bonus { min-width:0; }
+#cda-page .cda-bonus-art { width:min(100%,330px); margin:0 auto; padding:7px; border:1px solid var(--line); background:#E7D8C5; }
+#cda-page .cda-bonus-art img { width:100%; aspect-ratio:2/3; object-fit:contain; }
+#cda-page .cda-bonus-copy { padding-top:23px; }
+#cda-page .cda-bonus-copy .cda-kicker { margin-bottom:11px; }
+#cda-page .cda-bonus-copy h3 { color:var(--wine); }
+#cda-page .cda-bonus-copy p { margin-top:13px; color:var(--muted); }
+#cda-page .cda-business { border-block:1px solid var(--line); }
+#cda-page .cda-business-heading { display:grid; gap:24px; margin-bottom:34px; }
+#cda-page .cda-business-heading p { color:var(--muted); align-self:end; }
+#cda-page .cda-business-steps { display:grid; gap:27px; counter-reset:steps; }
+#cda-page .cda-business-step { border-top:1px solid var(--gold); padding-top:20px; }
+#cda-page .cda-business-step::before { counter-increment:steps; content:'0' counter(steps); display:block; color:var(--wine); font:italic 2.5rem/1 Georgia,'Times New Roman',serif; margin-bottom:18px; }
+#cda-page .cda-business-step h3 { font-size:1.5rem; }
+#cda-page .cda-business-step p { margin-top:13px; color:var(--muted); }
+#cda-page .cda-earnings-note { margin-top:30px; padding:19px; background:#E5D8CA; color:#51443A; font-size:.875rem; }
+#cda-page .cda-faq-wrap { max-width:800px; margin-inline:auto; }
+#cda-page .cda-faq h2 { margin-bottom:29px; }
+#cda-page .cda-faq details { border-top:1px solid var(--line); padding:0; }
+#cda-page .cda-faq details:last-child { border-bottom:1px solid var(--line); }
+#cda-page .cda-faq summary { cursor:pointer; font-weight:700; padding:21px 25px 21px 0; font-size:1rem; }
+#cda-page .cda-faq details p { padding:0 0 23px; color:var(--muted); }
+#cda-page .cda-final { background:var(--wine-deep); color:var(--cream); text-align:center; }
+#cda-page .cda-final .cda-kicker { color:#D8B785; }
+#cda-page .cda-final h2 { max-width:700px; margin-inline:auto; }
+#cda-page .cda-final p { max-width:610px; margin:23px auto; color:#DDCBBD; }
+#cda-page .cda-final .cda-button { background:var(--cream); color:var(--wine); border-color:var(--cream); }
+#cda-page .cda-footer { background:var(--wine-deep); color:#D6C0AC; padding:26px 0 118px; }
+#cda-page .cda-footer-inner { border-top:1px solid #705145; padding-top:25px; display:flex; justify-content:space-between; gap:25px; flex-wrap:wrap; }
+#cda-page .cda-footer p { max-width:510px; font-size:.8125rem; }
+#cda-page .cda-dock { position:fixed; z-index:50; bottom:max(12px,env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); width:min(550px,calc(100% - 24px)); padding:10px 11px 10px 17px; display:flex; align-items:center; justify-content:space-between; gap:14px; background:#F8F3EDF5; border:1px solid var(--gold); box-shadow:0 8px 30px #1C181733; border-radius:5px; }
+#cda-page .cda-dock-copy { min-width:0; }
+#cda-page .cda-dock-copy strong { display:block; font:400 1.1rem/1.2 Georgia,'Times New Roman',serif; color:var(--wine); overflow-wrap:anywhere; }
+#cda-page .cda-dock-copy span { display:block; font-size:.75rem; color:var(--muted); margin-top:3px; line-height:1.3; }
+#cda-page .cda-dock .cda-button { flex-shrink:0; padding:13px 16px; min-height:48px; font-size:.875rem; }
+@media (min-width:650px) {
+  #cda-page .cda-wrap { width:min(1160px,calc(100% - 64px)); }
+  #cda-page .cda-section { padding:85px 0; }
+  #cda-page .cda-hero { padding:52px 0 62px; }
+  #cda-page .cda-hero-actions { align-items:flex-start; }
+  #cda-page .cda-hero-price { justify-content:flex-start; }
+  #cda-page .cda-video-block { max-width:610px; margin-inline:auto; }
+  #cda-page .cda-story-grid { grid-template-columns:1.1fr .9fr; gap:40px; }
+  #cda-page .cda-plates { grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+  #cda-page .cda-plate-image { height:280px; padding:10px; }
+  #cda-page .cda-plate-image img { max-height:100%; width:auto; }
+  #cda-page .cda-offer-inner { padding:36px; }
+  #cda-page .cda-bonus-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+  #cda-page .cda-business-steps { grid-template-columns:repeat(3,minmax(0,1fr)); gap:30px; }
+  #cda-page .cda-business-heading { grid-template-columns:1.1fr .9fr; gap:50px; }
+}
+@media (min-width:950px) {
+  #cda-page .cda-header-inner { padding-block:25px; }
+  #cda-page .cda-brand { font-size:1.65rem; }
+  #cda-page .cda-header-note { max-width:none; }
+  #cda-page .cda-hero-layout { grid-template-columns:1.1fr .9fr; grid-template-areas:'copy video' 'actions video'; gap:24px 65px; align-items:center; }
+  #cda-page .cda-hero-copy { align-self:end; }
+  #cda-page .cda-hero-actions { align-self:start; }
+  #cda-page .cda-video-frame { padding:10px; }
+  #cda-page .cda-technique-grid { grid-template-columns:.85fr 1.15fr; gap:70px; }
+  #cda-page .cda-offer-grid { grid-template-columns:1.15fr .85fr; gap:36px; align-items:start; }
+  #cda-page .cda-offer-section { padding:92px 0; }
+  #cda-page .cda-plate-image { height:350px; }
+}
+@media (max-width:360px) {
+  #cda-page .cda-wrap { width:calc(100% - 28px); }
+  #cda-page .cda-offer-inner { padding:23px 12px; }
+  #cda-page .cda-price-panel { padding:23px 14px; }
+  #cda-page .cda-dock { padding:9px; gap:8px; }
+  #cda-page .cda-dock .cda-button { padding-inline:12px; }
+}
+@media (prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  #cda-page * { transition:none !important; }
+}
+
+#cda-page .cda-cover { max-width:440px; margin-inline:auto; }
+
+html, body { background:#2C1016; }
+@media (prefers-reduced-motion:reduce) { #cda-page .cda-pulse { animation:none !important; } }
+#cda-page .cda-hero h1 { text-transform:uppercase; letter-spacing:-.02em; font-size:clamp(2rem,7.4vw,4.4rem); }
+#cda-page .cda-hero-mock { grid-area:video; margin:0; align-self:center; width:min(100%,520px); margin-inline:auto; }
+#cda-page .cda-hero-mock img { width:100%; height:auto; filter:drop-shadow(0 18px 34px #0000004d); }
+#cda-page .cda-ribbon { display:inline-block; background:var(--wine); color:var(--paper); font-size:.75rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; padding:7px 14px; border-radius:2px; margin-bottom:6px; }
+#cda-page .cda-old-row { display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap; margin-top:12px; }
+#cda-page .cda-old-row .cda-old-price { margin:0; }
+#cda-page .cda-pill { display:inline-block; background:#2E6B3F; color:#fff; font-size:.8125rem; font-weight:700; padding:4px 10px; border-radius:99px; }
+#cda-page .cda-price { font-size:clamp(2.3rem,10.5vw,5.5rem); line-height:1.05; white-space:nowrap; overflow-wrap:normal; }
+#cda-page .cda-checklist li::before { content:none; }
+#cda-page .cda-checklist li { padding-left:0; }
+#cda-page .cda-bonus-box { margin-top:22px; border:2px dashed var(--gold); background:#FBF7F2; padding:16px 16px 12px; text-align:left; }
+#cda-page .cda-bonus-box strong { display:block; color:var(--wine); font-size:.8125rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:8px; }
+#cda-page .cda-bonus-box ul { list-style:none; padding:0; margin:0; font-size:.875rem; }
+#cda-page .cda-bonus-box li { padding:5px 0; border-bottom:1px solid #EADFD2; }
+#cda-page .cda-bonus-box li:last-child { border:0; }
+#cda-page .cda-bonus-total { margin-top:10px; font-size:.875rem; color:var(--walnut); }
+#cda-page .cda-bonus-total s { color:#78665A; }
+#cda-page .cda-trust { display:flex; justify-content:center; flex-wrap:wrap; gap:6px 16px; font-size:.8125rem; color:var(--muted); margin-top:4px; }
+#cda-page .cda-guarantee { margin-top:16px; padding:14px; border:1px solid var(--line); background:var(--paper); font-size:.875rem; color:var(--ink); }
+#cda-page .cda-guarantee strong { color:var(--wine); }
+#cda-page .cda-pulse { animation:cdaPulse 2.4s ease-in-out infinite; }
+@keyframes cdaPulse { 0%,100% { box-shadow:0 0 0 0 #43161C55; } 50% { box-shadow:0 0 0 9px #43161C00; } }
+#cda-page .cda-bonus-copy .cda-count { display:inline-block; margin-top:10px; font-weight:700; color:var(--walnut); font-size:.875rem; }
+#cda-page .cda-dock-copy strong { white-space:nowrap; overflow-wrap:normal; }
+#cda-page .cda-dock .cda-button { width:auto; flex-shrink:0; }
+/* Titulos y parrafos centrados (Mati 2026-10-05) */
+#cda-page h1, #cda-page h2, #cda-page h3, #cda-page p, #cda-page .cda-kicker, #cda-page .cda-intro, #cda-page .cda-hero-copy, #cda-page .cda-story-copy, #cda-page .cda-business-heading, #cda-page .cda-bonus-copy, #cda-page .cda-plate, #cda-page .cda-business-step, #cda-page .cda-final, #cda-page .cda-footer-inner { text-align:center; }
+#cda-page .cda-intro { margin-inline:auto; }
+#cda-page .cda-hero-description { margin-inline:auto; }
+#cda-page .cda-hero-points { justify-content:center; }
+#cda-page .cda-editorial-note { border-left:0; border-block:1px solid var(--gold); padding:16px 0; text-align:center; }
+#cda-page .cda-plate-label { justify-content:center; gap:14px; }
+#cda-page .cda-skill-list li { display:block; text-align:center; }
+#cda-page .cda-skill-list .cda-index { display:block; margin-bottom:4px; }
+#cda-page .cda-footer-inner { justify-content:center; }
+#cda-page .cda-footer p { margin-inline:auto; }
+#cda-page .cda-faq h2, #cda-page .cda-faq .cda-kicker { text-align:center; }
+#cda-page .cda-faq details p, #cda-page .cda-checklist, #cda-page .cda-bonus-box { text-align:left; }
+@media (min-width:650px) { #cda-page .cda-bonus-grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+@media (max-width:520px) {
+  #cda-page h1, #cda-page .cda-hero h1 { font-size:clamp(1.75rem,8vw,2.4rem); }
+  #cda-page h2 { font-size:clamp(1.85rem,8vw,2.4rem); }
+  #cda-page .cda-section { padding:52px 0; }
+  #cda-page .cda-button { width:100%; }
+  #cda-page .cda-strip-item strong { font-size:1.45rem; }
+  #cda-page .cda-header-note { display:none; }
+  #cda-page .cda-dock .cda-button { width:auto; }
+}
+@media (max-width:380px) {
+  #cda-page .cda-wrap { width:calc(100% - 28px); }
+  #cda-page .cda-price { font-size:2.3rem; }
+  #cda-page .cda-strip-item span { font-size:.75rem; }
+  #cda-page .cda-dock-copy span { display:none; }
+}
+</style>
+<div id="cda-page" lang="en">
+<a class="cda-skip" href="#cda-main">Skip to content</a>
+<header class="cda-header">
+<div class="cda-wrap cda-header-inner">
+<a aria-label="Couture Corsetry home" class="cda-brand" href="#cda-main">Couture Corsetry<span>The pattern collection</span></a>
+<span class="cda-header-note">The art<br/>of creating beauty</span>
+</div>
+</header>
+<main id="cda-main">
+<section aria-labelledby="cda-hero-title" class="cda-hero">
+<div class="cda-wrap cda-hero-layout">
+<div class="cda-hero-copy">
+<span class="cda-kicker">100+ PDF patterns · Couture corsetry</span>
+<h1 id="cda-hero-title">Create corsets and lingerie your clients will want to own,<br/><em>starting today and without drafting a single pattern.</em></h1>
+<p class="cda-hero-description">100+ couture corset patterns in PDF, ready to print, with the construction and finishing techniques. Plus 6 free bonuses, including 60 bra, bodysuit and brief patterns. Instant access.</p>
+<ul class="cda-hero-points"><li>Print-ready PDF patterns</li><li>Couture techniques</li><li>6 bonuses, with bra, bodysuit and brief patterns</li></ul>
+</div>
+<figure class="cda-hero-mock">
+<img alt="Couture Corsetry: the corset pattern collection with its lingerie bonuses" decoding="async" fetchpriority="high" height="1024" src="https://negocio-ebooks.github.io/landings-img/cda-en/hero-mockup.webp" width="1024"/>
+</figure>
+<div class="cda-hero-actions">
+<a class="cda-button" href="/checkout">I WANT ACCESS NOW <span aria-hidden="true" class="cda-arrow">→</span></a>
+<div class="cda-hero-price"><strong>{{price}}</strong><span>One-time payment</span></div>
+<a class="cda-text-link" href="#cda-collection">See the patterns</a>
+</div>
+</div>
+</section>
+<div aria-label="The collection at a glance" class="cda-collection-strip">
+<div class="cda-wrap cda-strip-inner">
+<div class="cda-strip-item"><strong>100+</strong><span>Corset patterns</span></div>
+<div class="cda-strip-item"><strong>6</strong><span>Free bonuses</span></div>
+<div class="cda-strip-item"><strong>60</strong><span>Lingerie patterns</span></div>
+</div>
+</div>
+<section aria-labelledby="cda-story-title" class="cda-section">
+<div class="cda-wrap cda-story-grid">
+<div class="cda-story-copy">
+<span class="cda-kicker">From inspiration to your own studio</span>
+<h2 id="cda-story-title">A great garment starts<br/>with <em>a good foundation.</em></h2>
+<p>A special corset is much more than its silhouette. It is the way its panels come together, how the fabric is handled and the care given to every edge.</p>
+<p>Couture Corsetry brings together a wide collection of patterns with guidance on construction and finishing, so you have a starting point as you develop your own line of garments.</p>
+<p>Start with a design you love. Perfect a sample. Build a portfolio that helps your future clients discover what you can do.</p>
+<div class="cda-editorial-note">Create a piece that makes you proud.<br/>And give your next client a reason to choose you.</div>
+</div>
+<figure class="cda-story-photo">
+<img alt="Ivory corset on a dress form next to paper patterns and a tape measure" decoding="async" height="1400" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/historia-corset.webp" width="1050"/>
+<figcaption>The pattern. The practice. The piece that carries your signature.</figcaption>
+</figure>
+</div>
+</section>
+<section aria-labelledby="cda-collection-title" class="cda-section cda-collection" id="cda-collection">
+<div class="cda-wrap">
+<div class="cda-intro"><span class="cda-kicker">The design archive</span><h2 id="cda-collection-title">More possibilities.<br/><em>More room for your style.</em></h2><p>Explore silhouettes, neckline ideas and structural details as you plan the pieces of your handmade collection.</p></div>
+<div class="cda-plates">
+<article class="cda-plate">
+<div class="cda-plate-label"><span>PLATE I</span><span>Necklines</span></div>
+<div class="cda-plate-image"><img alt="Six overbust corset necklines: sweetheart, cupped, boat, plunge, V and straight" decoding="async" height="1100" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/plate-1-necklines.webp" width="1100"/></div>
+<h3>A different neckline.<br/>A different character.</h3><p>From the curves of a sweetheart neckline to straight lines, discover how the top edge transforms the personality of a design.</p>
+</article>
+<article class="cda-plate">
+<div class="cda-plate-label"><span>PLATE II</span><span>Classic structure</span></div>
+<div class="cda-plate-image"><img alt="Historical illustration of a corset showing its panel structure and back lacing" decoding="async" height="1375" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/plate-2-structure.webp" width="1100"/></div>
+<h3>Inspiration from the past.<br/>A designer's eye.</h3><p>Study the panel lines, the boning and the lacing that give classic corsetry its signature shape.</p>
+</article>
+<article class="cda-plate">
+<div class="cda-plate-label"><span>PLATE III</span><span>Design variations</span></div>
+<div class="cda-plate-image"><img alt="Corset variations with different necklines, cups, front closures and lacing" decoding="async" height="1375" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda/lamina-3-variaciones.webp" width="1100"/></div>
+<h3>Create a collection<br/>with its own identity.</h3><p>Imagine different silhouettes as you develop samples, explore fabrics and shape your portfolio.</p>
+</article>
+</div>
+<p class="cda-plate-note">Reference images illustrate the topic; they are not the downloadable pattern files.</p>
+</div>
+</section>
+<section aria-labelledby="cda-techniques-title" class="cda-section cda-techniques">
+<div class="cda-wrap cda-technique-grid">
+<figure class="cda-technique-photo">
+<img alt="Hands sketching a corset design in a sewing studio" decoding="async" height="1400" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda/tecnica-manos.webp" width="933"/>
+<figcaption>Good design lives in the details you take the time to understand.</figcaption>
+</figure>
+<div>
+<span class="cda-kicker">The craft behind the collection</span>
+<h2 id="cda-techniques-title">Learn to recognize<br/><em>the difference in the details.</em></h2>
+<ul class="cda-skill-list">
+<li><span class="cda-index">01</span><div><strong>Precision sewing and sheer fabrics</strong><p>Gain more control when cutting, stabilizing and sewing delicate tulle.</p></div></li>
+<li><span class="cda-index">02</span><div><strong>Careful pattern-making and fit</strong><p>Explore the structure, shaping and adjustments that help fit a garment to the woman wearing it.</p></div></li>
+<li><span class="cda-index">03</span><div><strong>Refined finishing</strong><p>Give seams, edges and inside details the attention a well-finished piece deserves.</p></div></li>
+<li><span class="cda-index">04</span><div><strong>Presenting made-to-measure garments</strong><p>Discover how to style and present a made-to-measure garment as part of a complete look.</p></div></li>
+</ul>
+</div>
+</div>
+</section>
+<section aria-labelledby="cda-offer-title" class="cda-offer-section" id="cda-offer">
+<div class="cda-wrap cda-offer"><div class="cda-offer-inner">
+<div class="cda-offer-heading"><span class="cda-kicker">Your invitation to begin</span><h2 id="cda-offer-title">The complete collection<br/><em>Couture Corsetry.</em></h2><p>A creative resource for women who want to refine their work and offer handmade corsets and lingerie to their clients.</p></div>
+<div class="cda-offer-grid">
+<div>
+<figure class="cda-cover">
+<img alt="Couture Corsetry cover with an embroidered tulle corset in a sewing studio" decoding="async" height="1536" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/portada.webp" width="1024"/>
+<figcaption>Digital resources for your sewing table. No physical products are shipped.</figcaption>
+</figure>
+<ul class="cda-checklist cda-checklist-main">
+<li>📐 <strong>More than 100 corset patterns</strong> as printable PDFs, in cm and inches</li>
+<li>🧵 Guidance on precision sewing and pattern-making</li>
+<li>✂️ Fitting, finishing and styling techniques for made-to-measure garments</li>
+</ul>
+</div>
+<div class="cda-price-panel">
+<span class="cda-ribbon">Launch offer</span>
+<div class="cda-price-label">The complete digital collection</div>
+<div class="cda-old-row" id="cda-old-row"><del class="cda-old-price" id="cda-original">{{original_price}}</del><span class="cda-pill" id="cda-savings-row">You save <span id="cda-savings">{{savings}}</span></span></div>
+<strong class="cda-price" id="cda-current-price">{{price}}</strong>
+<p class="cda-small">One-time payment · Lifetime access</p>
+<div class="cda-bonus-box">
+<strong>🎁 6 free bonuses included</strong>
+<ul>
+<li>✔️ Guide to Working with Sheer Tulle</li>
+<li>✔️ Finishing Checklist</li>
+<li>✔️ Photography &amp; Styling for Your Portfolio</li>
+<li>✔️ Pack of 20 Bra &amp; Bralette Patterns</li>
+<li>✔️ Pack of 20 Bodysuit Patterns</li>
+<li>✔️ Pack of 20 Brief Patterns: Thongs, Tangas, Cheeky Briefs &amp; Boyshorts</li>
+</ul>
+<div class="cda-bonus-total">Bonus value: <s>US$ 144</s> · included today</div>
+</div>
+<a class="cda-button cda-pulse" href="/checkout">I WANT ACCESS NOW · {{price}} <span aria-hidden="true" class="cda-arrow">→</span></a>
+<div class="cda-trust"><span>🔒 Secure payment</span><span>⚡ Instant access</span><span>🛡️ 7-day guarantee</span></div>
+<div class="cda-guarantee"><strong>7-day guarantee.</strong> If the collection isn't what you expected, you have 7 days from purchase to request a refund.</div>
+<p class="cda-digital-note">PDF collection + learning resources + 6 bonuses.<br/>Fabrics, sewing tools and finished garments are not included.</p>
+</div>
+</div>
+</div></div>
+</section>
+<section aria-labelledby="cda-bonuses-title" class="cda-section cda-bonuses">
+<div class="cda-wrap">
+<div class="cda-intro"><span class="cda-kicker">Six special extras · Included</span><h2 id="cda-bonuses-title">Support for the final details.<br/><em>And for what comes next.</em></h2><p>From handling a delicate fabric to the lingerie that completes your collection, these bonuses help you take care of what matters.</p></div>
+<div class="cda-bonus-grid">
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of the Guide to Working with Sheer Tulle" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-1-tulle.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus I · Confidence with fabric</span><h3>Guide to Working with<br/>Sheer Tulle</h3><p>Practical tips to stabilize, cut and sew tulle with less stretching and more control, keeping it precise from the first cut to the last seam.</p></div>
+</article>
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of the Finishing Checklist" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-2-finishing.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus II · A refined result</span><h3>Finishing<br/>Checklist</h3><p>A short list to review the details that often get overlooked. Check seams, edges and finishes before you photograph or present your piece.</p></div>
+</article>
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of Photography &amp; Styling for Your Portfolio" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-3-photography.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus III · Make your work visible</span><h3>Photography &amp; Styling<br/>for Your Portfolio</h3><p>Simple guidance on photography and presentation so the shape, texture and finishing of your corset come through when you share it online.</p></div>
+</article>
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of the Pack of 20 Bra &amp; Bralette Patterns" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-4-bras.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus IV · Lingerie</span><h3>Pack of<br/>20 Bra &amp; Bralette Patterns</h3><p>Bras and bralettes, from the classics to the most delicate, to add the pieces your clients look for every day to your collection.</p><span class="cda-count">20 PDF patterns</span></div>
+</article>
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of the Pack of 20 Bodysuit Patterns" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-5-bodysuits.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus V · Lingerie</span><h3>Pack of<br/>20 Bodysuit Patterns</h3><p>Bodysuits to wear on their own or as part of a set, with different necklines and backs to add variety to what you offer.</p><span class="cda-count">20 PDF patterns</span></div>
+</article>
+<article class="cda-bonus">
+<div class="cda-bonus-art"><img alt="Cover of the Pack of 20 Brief Patterns" decoding="async" height="1200" loading="lazy" src="https://negocio-ebooks.github.io/landings-img/cda-en/bono-6-briefs.webp" width="800"/></div>
+<div class="cda-bonus-copy"><span class="cda-kicker">Bonus VI · Lingerie</span><h3>Pack of 20 Brief Patterns:<br/>Thongs, Tangas, Cheeky Briefs &amp; Boyshorts</h3><p>Thongs, tangas, cheeky briefs and boyshorts: the basics for building complete sets with your bras and bodysuits.</p><span class="cda-count">20 PDF patterns</span></div>
+</article>
+</div>
+</div>
+</section>
+<section aria-labelledby="cda-business-title" class="cda-section cda-business">
+<div class="cda-wrap">
+<div class="cda-business-heading"><div><span class="cda-kicker">A handmade craft. A possible source of income.</span><h2 id="cda-business-title">Your next chapter<br/>can begin <em>at your sewing table.</em></h2></div><p>You don't need to launch a whole collection at once. Start with one piece you can make well, present it clearly and test your clients' interest.</p></div>
+<div class="cda-business-steps">
+<article class="cda-business-step"><h3>Make a good sample.</h3><p>Choose a design, practice making it and perfect the fit. A well-made sample can be the starting point of your portfolio.</p></article>
+<article class="cda-business-step"><h3>Show the handcraft.</h3><p>Photograph the front, the back and the finishing. Help your future clients understand the care behind a handmade garment.</p></article>
+<article class="cda-business-step"><h3>Plan a realistic offer.</h3><p>Before taking orders, work out materials, labor, fittings and delivery. Build a service around what you can make with confidence.</p></article>
+</div>
+<p class="cda-earnings-note">An opportunity to develop your skills, not a promise of income. Results depend on your experience, practice, costs, prices and demand. The patterns are for making your garments; buying the collection does not give you the right to resell the digital files.</p>
+</div>
+</section>
+<section aria-labelledby="cda-faq-title" class="cda-section cda-faq">
+<div class="cda-wrap cda-faq-wrap">
+<span class="cda-kicker">Before you start</span><h2 id="cda-faq-title">A few helpful details.</h2>
+<details><summary>Is it a single corset pattern or a collection?</summary><p>It is a collection of more than 100 corset patterns in PDF, with guidance on sewing, fitting and finishing, and measurement charts in cm and inches. The bonuses add 60 lingerie patterns: bras, bodysuits and briefs.</p></details>
+<details><summary>Will I receive a physical corset or printed books?</summary><p>No. It is a digital collection. You will not receive finished garments, printed books, fabrics or sewing equipment. You can view the PDF files on your devices or print the patterns you want to work with.</p></details>
+<details><summary>Is it for me if I'm still learning to sew?</summary><p>You can use the collection to build your skills, but corsetry takes practice. Knowing how to use a sewing machine and the basics of garment construction will help. Start with a manageable project and test the fit on a mock-up fabric before using your final material.</p></details>
+<details><summary>Can I use what I learn to start taking orders?</summary><p>The collection aims to help you develop garments and a portfolio for a possible handmade business. Before taking paid work, practice, a reliable fit and realistic costing matter. Income and orders are not guaranteed.</p></details>
+<details><summary>Are all six bonuses included?</summary><p>Yes. The Guide to Working with Sheer Tulle, the Finishing Checklist, Photography &amp; Styling for Your Portfolio and the three lingerie packs (bras and bralettes, bodysuits and briefs) are all included in this offer as digital resources.</p></details>
+<details><summary>Is it a recurring payment?</summary><p>No. It is a one-time purchase, not a subscription. Check the final amount on the checkout page.</p></details>
+</div>
+</section>
+<section aria-labelledby="cda-final-title" class="cda-section cda-final">
+<div class="cda-wrap">
+<span class="cda-kicker">Couture Corsetry</span><h2 id="cda-final-title">Create something beautiful.<br/><em>Let it be the start of something more.</em></h2>
+<p>More than 100 corset patterns, practical techniques and six free bonuses, with 60 lingerie patterns, to support you in the next step of your craft.</p>
+<a class="cda-button" href="/checkout">I WANT ACCESS NOW <span aria-hidden="true" class="cda-arrow">→</span></a>
+</div>
+</section>
+</main>
+<footer class="cda-footer"><div class="cda-wrap cda-footer-inner"><div class="cda-brand">Couture Corsetry<span>The art is in the details.</span></div><p>Digital patterns and learning resources. Product images are illustrative. The result of your garments will depend on the pattern you choose, the materials, the measurements and your sewing experience.</p></div></footer>
+<aside aria-label="Buy the collection" class="cda-dock" hidden="" id="cda-dock">
+<div class="cda-dock-copy"><strong>{{price}}</strong><span>100+ patterns · One-time payment</span></div>
+<a class="cda-button" href="/checkout">Get access <span aria-hidden="true">→</span></a>
+</aside>
+</div>
+<script>
+(function () {
+  'use strict';
+  var root = document.getElementById('cda-page');
+  if (!root) return;
+  var original = root.querySelector('#cda-original');
+  var savings = root.querySelector('#cda-savings');
+  var price = root.querySelector('#cda-current-price');
+  function resolved(t) { return !!t && t.indexOf('{{') === -1; }
+  function refreshPrices() {
+    try {
+      var s = savings.textContent.trim(), o = original.textContent.trim(), p = price.textContent.trim();
+      var show = resolved(s) && /[1-9]/.test(s) && !/[-−]/.test(s) && resolved(o) && resolved(p) && o !== p;
+      root.querySelector('#cda-old-row').hidden = !show;
+    } catch (e) {}
+  }
+  refreshPrices();
+  if ('MutationObserver' in window) {
+    var ob = new MutationObserver(refreshPrices);
+    [price, original, savings].forEach(function (n) { ob.observe(n, {childList:true, characterData:true, subtree:true}); });
+  }
+  var offer = root.querySelector('#cda-offer');
+  var dock = root.querySelector('#cda-dock');
+  function updateDock() {
+    try { dock.hidden = !(offer.getBoundingClientRect().bottom < 0); } catch (e) {}
+  }
+  window.addEventListener('scroll', updateDock, {passive:true});
+  window.addEventListener('resize', updateDock, {passive:true});
+  window.addEventListener('load', updateDock);
+  window.addEventListener('pageshow', updateDock);
+  setInterval(updateDock, 400);
+  updateDock();
+}());
+</script>
