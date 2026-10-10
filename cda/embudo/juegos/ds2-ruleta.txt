@@ -81,7 +81,7 @@
   box-shadow:inset 0 0 0 2px #0A0806,inset 0 0 30px rgba(0,0,0,.55);transition:transform 4.2s cubic-bezier(.12,.72,.1,1)}
 .hbr .hbr-wheel::before{content:"";position:absolute;inset:0;border-radius:50%;background:repeating-conic-gradient(from -.5deg,rgba(243,223,178,.95) 0 1deg,transparent 1deg 45deg)}
 .hbr .hbr-seg{position:absolute;inset:0;display:flex;justify-content:center;padding-top:8%;line-height:1}
-.hbr .hbr-seg b{font-size:15px;color:var(--gold);font-weight:400}
+.hbr .hbr-seg b{font-family:Georgia,serif;font-size:15px;color:var(--gold);font-weight:700}
 .hbr .hbr-seg.is-win{padding-top:6.5%}
 .hbr .hbr-seg.is-win b{font-family:Georgia,serif;font-weight:700;font-size:22px;color:#2C1016}
 .hbr .hbr-prize-s:empty::before{content:"★";font-size:22px}
@@ -111,9 +111,9 @@
         <span class="hbr-pin" aria-hidden="true"></span>
         <div class="hbr-wheel" aria-hidden="true">
           <span class="hbr-seg hbr-s1 is-win"><b class="hbr-prize-s">{discount}</b></span>
-          <span class="hbr-seg hbr-s2"><b>✦</b></span><span class="hbr-seg hbr-s3"><b>✦</b></span><span class="hbr-seg hbr-s4"><b>✦</b></span>
-          <span class="hbr-seg hbr-s5"><b>✦</b></span><span class="hbr-seg hbr-s6"><b>✦</b></span><span class="hbr-seg hbr-s7"><b>✦</b></span>
-          <span class="hbr-seg hbr-s8"><b>✦</b></span>
+          <span class="hbr-seg hbr-s2"><b>10%</b></span><span class="hbr-seg hbr-s3"><b>25%</b></span><span class="hbr-seg hbr-s4"><b>15%</b></span>
+          <span class="hbr-seg hbr-s5"><b>35%</b></span><span class="hbr-seg hbr-s6"><b>20%</b></span><span class="hbr-seg hbr-s7"><b>40%</b></span>
+          <span class="hbr-seg hbr-s8"><b>30%</b></span>
         </div>
         <span class="hbr-hub" aria-hidden="true">✦</span>
       </div>
