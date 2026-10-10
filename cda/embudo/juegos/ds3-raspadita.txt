@@ -1,0 +1,198 @@
+<!-- Post-compra CDA-AR · DownSell 3 (50%) · RASPADITA v2 (diseño «post-compra jugable» de Mati, adaptado) ·
+     arranca con <details>, sin JavaScript; el raspado con el dedo es un extra con JS. data-pp-accept = SÍ, data-pp-decline = NO.
+     {price} {compare} {discount} {savings} {timer} {product-title} {product-image} {first-name}: los completa ImpulTienda. -->
+<style>
+.hbr{--bg:#1c0a0e;--line:rgba(216,183,133,.3);--gold:#D8B785;--gold2:#F3DFB2;--goldd:#8a6a35;--cream:#F8F3ED;--soft:#bfae9f;--ember:#c0392b;
+  --foil:linear-gradient(135deg,#8a6a35 0%,#D8B785 22%,#F7E6B8 42%,#B58E5E 60%,#7a5a2c 80%,#E6C88E 100%);--wait:2.4s;
+  font-family:Arial,'Helvetica Neue',system-ui,sans-serif;color:var(--cream);background:radial-gradient(130% 55% at 50% 0%,#5a1a26 0%,#2C1016 45%,var(--bg) 75%);
+  line-height:1.5;max-width:520px;margin:0 auto;padding:0 0 30px;text-align:left;-webkit-font-smoothing:antialiased;position:relative;overflow:hidden}
+.hbr *{box-sizing:border-box}
+.hbr h1,.hbr h2,.hbr h3{font-family:Georgia,'Times New Roman',serif;font-weight:700;color:var(--cream);margin:0;line-height:1.1;text-transform:uppercase;letter-spacing:.01em}
+.hbr p{margin:0}
+.hbr img{display:block;max-width:100%;height:auto}
+.hbr .hbr-ok{display:block;background:#140609;color:var(--gold);border-bottom:1px solid var(--line);font-weight:700;font-size:12.5px;letter-spacing:.03em;padding:10px 16px;text-align:center}
+.hbr .hbr-name::before{content:", "}.hbr .hbr-name:empty{display:none}
+.hbr .hbr-top{padding:26px 22px 0;text-align:center}
+.hbr .hbr-pill{display:inline-block;border:1px solid var(--line);background:rgba(216,183,133,.08);color:var(--gold);font-weight:700;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;padding:7px 14px;border-radius:100px}
+.hbr .hbr-top h1{font-size:29px;margin:16px 0 12px}
+.hbr .hbr-top h1 em{display:block;font-style:italic;text-transform:none;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hbr .hbr-sub{font-size:15px;color:var(--soft)}
+.hbr .hbr-sub b{color:var(--cream)}
+.hbr .hbr-g>summary{display:block;list-style:none;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.hbr .hbr-g>summary::-webkit-details-marker{display:none}.hbr .hbr-g>summary::marker{content:""}
+.hbr .hbr-g[open]>summary{pointer-events:none}
+.hbr .hbr-game{position:relative;margin:22px 16px 0;padding:26px 16px 22px;border-radius:22px;background:radial-gradient(120% 90% at 50% 0%,#4a1520,#1a080c 70%);
+  border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 30px 60px -30px rgba(0,0,0,.9);text-align:center}
+.hbr .hbr-play,.hbr .hbr-btn{position:relative;overflow:hidden;background:var(--foil);color:#2C1016;font-family:Arial,sans-serif;font-weight:800;letter-spacing:.12em;text-transform:uppercase;border:0;border-radius:12px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55),inset 0 -2px 0 rgba(0,0,0,.25),0 12px 26px -10px rgba(216,183,133,.6)}
+.hbr .hbr-play::after,.hbr .hbr-btn::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg);animation:hbr-sheen 3.4s ease-in-out infinite;pointer-events:none}
+@keyframes hbr-sheen{0%,55%{left:-60%}100%{left:130%}}
+.hbr .hbr-play{display:inline-flex;align-items:center;justify-content:center;margin-top:20px;padding:15px 30px;font-size:16px}
+.hbr .hbr-b2{display:none}
+.hbr .hbr-hint{font-size:12.5px;color:var(--soft);margin-top:12px}
+.hbr .hbr-res{max-height:0;overflow:hidden;opacity:0;font-size:15px;font-weight:700;color:var(--cream);transition:opacity .4s ease}
+.hbr .hbr-res b{color:var(--gold2)}
+.hbr .hbr-prize:empty::before{content:"un precio especial"}
+.hbr .hbr-prize:not(:empty)::after{content:" OFF"}
+.hbr .hbr-win{opacity:0;visibility:hidden;max-height:0;overflow:hidden;transform:translateY(18px)}
+.hbr .hbr-conf{position:absolute;left:50%;top:44px;width:0;height:0;pointer-events:none}
+.hbr .hbr-conf i{position:absolute;left:0;top:0;width:7px;height:12px;border-radius:1px;opacity:0;background:var(--gold)}
+.hbr .hbr-conf i:nth-child(3n+1){background:var(--gold2)}.hbr .hbr-conf i:nth-child(3n+2){background:#fff}
+.hbr .hbr-conf i:nth-child(1){--x:-150px;--y:-20px;--z:220deg}.hbr .hbr-conf i:nth-child(2){--x:-110px;--y:-70px;--z:-160deg}.hbr .hbr-conf i:nth-child(3){--x:-70px;--y:-40px;--z:300deg}.hbr .hbr-conf i:nth-child(4){--x:-30px;--y:-90px;--z:-240deg}.hbr .hbr-conf i:nth-child(5){--x:10px;--y:-60px;--z:180deg}.hbr .hbr-conf i:nth-child(6){--x:50px;--y:-95px;--z:-280deg}.hbr .hbr-conf i:nth-child(7){--x:90px;--y:-45px;--z:260deg}.hbr .hbr-conf i:nth-child(8){--x:130px;--y:-75px;--z:-200deg}.hbr .hbr-conf i:nth-child(9){--x:160px;--y:-15px;--z:320deg}.hbr .hbr-conf i:nth-child(10){--x:-130px;--y:30px;--z:-300deg}.hbr .hbr-conf i:nth-child(11){--x:120px;--y:35px;--z:240deg}.hbr .hbr-conf i:nth-child(12){--x:-20px;--y:-120px;--z:-220deg}
+@keyframes hbr-conf{0%{opacity:1;transform:translate(0,0) rotate(0) scale(.4)}70%{opacity:1}100%{opacity:0;transform:translate(var(--x),calc(var(--y) + 120px)) rotate(var(--z)) scale(1)}}
+.hbr .hbr-won{padding:26px 20px 0;text-align:center}
+.hbr .hbr-tag{display:inline-block;color:var(--gold);font-weight:700;font-size:10.5px;letter-spacing:.24em;text-transform:uppercase}
+.hbr .hbr-won h2{font-size:32px;margin:10px 0 8px}
+.hbr .hbr-won h2 .hbr-prize{color:var(--gold2);text-shadow:0 0 22px rgba(216,183,133,.45)}
+.hbr .hbr-won .hbr-sub{max-width:34ch;margin:0 auto}
+.hbr .hbr-card{margin:20px 16px 0;background:linear-gradient(180deg,#3a1219,#22090e);border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 26px 50px -22px rgba(0,0,0,.85)}
+.hbr .hbr-visual{background:#F8F3ED;border-bottom:1px solid var(--line)}
+.hbr .hbr-visual img{width:100%}
+.hbr .hbr-body{padding:20px 20px 22px}
+.hbr .hbr-body h3{font-size:21px;letter-spacing:.02em;margin-bottom:14px;text-transform:none}
+.hbr .hbr-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:10px}
+.hbr .hbr-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;font-size:14.5px;line-height:1.4;color:#efe3d3}
+.hbr .hbr-list li::before{content:"✦";display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1px solid var(--line);color:var(--gold);font-size:10px}
+.hbr .hbr-price{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;padding-top:16px;border-top:1px solid var(--line)}
+.hbr .hbr-disc{display:inline-block;background:var(--foil);color:#2C1016;font-weight:800;font-size:13px;letter-spacing:.06em;line-height:1;padding:6px 9px;border-radius:6px}
+.hbr .hbr-disc::after{content:" OFF"}.hbr .hbr-disc:empty{display:none}
+.hbr .hbr-old{font-size:17px;color:var(--soft);text-decoration:line-through;text-decoration-color:var(--ember)}.hbr .hbr-old:empty{display:none}
+.hbr .hbr-now{font-family:Georgia,serif;font-weight:700;font-size:42px;color:var(--cream);line-height:1}
+.hbr .hbr-save{display:block;text-align:center;font-weight:700;font-size:13px;color:var(--gold);margin-top:8px}
+.hbr .hbr-save::before{content:"Ahorrás "}.hbr .hbr-save:empty{display:none}
+.hbr .hbr-btn{display:flex;align-items:center;justify-content:center;width:100%;margin:18px 0 0;padding:17px 16px;font-size:18px;line-height:1.15;text-decoration:none;text-align:center;cursor:pointer}
+.hbr .hbr-btn span{display:block}
+.hbr .hbr-btn small{display:block;margin-top:4px;font-weight:600;font-size:12px;letter-spacing:0;text-transform:none;opacity:.75}
+.hbr .hbr-timer{display:flex;justify-content:center;align-items:center;gap:8px;margin:16px 0 0;font-size:13px;color:var(--soft)}
+.hbr .hbr-timer b{font-family:Georgia,serif;font-size:16px;letter-spacing:.06em;color:var(--gold2);background:rgba(216,183,133,.1);border:1px solid var(--line);padding:2px 10px;border-radius:6px;font-variant-numeric:tabular-nums}
+.hbr .hbr-no{display:block;width:calc(100% - 32px);margin:20px 16px 0;padding:10px;background:none;border:0;color:#a08b7c;font-family:Arial,sans-serif;font-size:13px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.hbr .hbr-trust{display:flex;justify-content:center;gap:8px 16px;flex-wrap:wrap;margin:12px 16px 0;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.hbr .hbr-trust span::before{content:"✦ ";color:var(--gold)}
+@media (min-width:600px){.hbr .hbr-top h1{font-size:34px}}
+
+.hbr .hbr-ticket{position:relative;max-width:320px;margin:0 auto;padding:14px 16px 12px;border-radius:14px;border:2px solid transparent;
+  background:linear-gradient(180deg,#43161C,#1c0a0e) padding-box,var(--foil) border-box;box-shadow:0 16px 34px rgba(0,0,0,.6)}
+.hbr .hbr-ticket::before,.hbr .hbr-ticket::after{content:"";position:absolute;top:58%;width:22px;height:22px;border-radius:50%;background:#2C1016;box-shadow:inset 0 0 0 2px #B58E5E;transform:translateY(-50%)}
+.hbr .hbr-ticket::before{left:-13px;clip-path:inset(0 0 0 50%)}.hbr .hbr-ticket::after{right:-13px;clip-path:inset(0 50% 0 0)}
+.hbr .hbr-thead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.hbr .hbr-thead span{font-family:Georgia,serif;font-weight:700;font-size:20px;letter-spacing:.12em;text-transform:uppercase;background:var(--foil);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hbr .hbr-thead small{font-size:11px;letter-spacing:.12em;color:var(--soft)}
+.hbr .hbr-ed{text-align:left;font-family:Georgia,serif;font-style:italic;font-size:13px;color:var(--gold);margin:2px 0 10px}
+.hbr .hbr-area{position:relative;height:150px;border-radius:10px;overflow:hidden;background:radial-gradient(circle at 50% 50%,#5a1a26,#1c0a0e 75%);box-shadow:inset 0 0 0 1px var(--line)}
+.hbr .hbr-under{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.hbr .hbr-under small{font-size:11px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
+.hbr .hbr-prize-r{font-family:Georgia,serif;font-weight:700;font-size:54px;line-height:1.05;color:var(--gold2);text-shadow:0 0 24px rgba(216,183,133,.5)}
+.hbr .hbr-prize-r:empty::before{content:"Precio especial";font-size:30px}
+.hbr .hbr-prize-r:not(:empty)::after{content:" OFF";font-size:22px;letter-spacing:.1em}
+.hbr .hbr-grid{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(3,1fr)}
+.hbr .hbr-foilt{display:block;background-image:radial-gradient(rgba(255,255,255,.45) .7px,transparent 1.2px),linear-gradient(125deg,#9C7A4E 0%,#E8D2A6 26%,#B58E5E 48%,#F4E4C4 66%,#A07E52 84%,#D8B785 100%);background-size:4px 4px,400% 300%}
+.hbr .hbr-k1{background-position:0 0,0.00% 0%}.hbr .hbr-k2{background-position:0 0,33.33% 0%}.hbr .hbr-k3{background-position:0 0,66.67% 0%}.hbr .hbr-k4{background-position:0 0,100.00% 0%}.hbr .hbr-k5{background-position:0 0,0.00% 50%}.hbr .hbr-k6{background-position:0 0,33.33% 50%}.hbr .hbr-k7{background-position:0 0,66.67% 50%}.hbr .hbr-k8{background-position:0 0,100.00% 50%}.hbr .hbr-k9{background-position:0 0,0.00% 100%}.hbr .hbr-k10{background-position:0 0,33.33% 100%}.hbr .hbr-k11{background-position:0 0,66.67% 100%}.hbr .hbr-k12{background-position:0 0,100.00% 100%}
+.hbr .hbr-cover{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;font-family:Georgia,serif;font-weight:700;font-size:18px;letter-spacing:.3em;text-transform:uppercase;color:#6B4A2A;white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,.55);transition:opacity .3s ease}
+.hbr .hbr-fine{font-size:10.5px;letter-spacing:.06em;color:var(--soft);margin-top:10px}
+.hbr .hbr-mini{font-size:13px;padding:11px 20px;margin-top:16px;background:transparent;color:var(--gold);box-shadow:inset 0 0 0 1px var(--gold)}
+.hbr .hbr-mini::after{display:none}
+@keyframes hbr-scr{to{transform:scale(0) rotate(14deg);opacity:0}}
+.hbr .hbr-g[open] .hbr-cover{opacity:0}
+.hbr .hbr-g[open] .hbr-k1{animation:hbr-scr .35s ease 0.00s forwards}.hbr .hbr-g[open] .hbr-k2{animation:hbr-scr .35s ease 0.13s forwards}.hbr .hbr-g[open] .hbr-k6{animation:hbr-scr .35s ease 0.26s forwards}.hbr .hbr-g[open] .hbr-k5{animation:hbr-scr .35s ease 0.39s forwards}.hbr .hbr-g[open] .hbr-k9{animation:hbr-scr .35s ease 0.52s forwards}.hbr .hbr-g[open] .hbr-k10{animation:hbr-scr .35s ease 0.65s forwards}.hbr .hbr-g[open] .hbr-k11{animation:hbr-scr .35s ease 0.78s forwards}.hbr .hbr-g[open] .hbr-k7{animation:hbr-scr .35s ease 0.91s forwards}.hbr .hbr-g[open] .hbr-k3{animation:hbr-scr .35s ease 1.04s forwards}.hbr .hbr-g[open] .hbr-k4{animation:hbr-scr .35s ease 1.17s forwards}.hbr .hbr-g[open] .hbr-k8{animation:hbr-scr .35s ease 1.30s forwards}.hbr .hbr-g[open] .hbr-k12{animation:hbr-scr .35s ease 1.43s forwards}
+.hbr .hbr-cv{position:absolute;inset:0;width:100%;height:100%;z-index:4;touch-action:none;cursor:grab;transition:opacity .45s}
+.hbr.rs-js .hbr-grid,.hbr.rs-js .hbr-cover{visibility:hidden}
+.hbr.rs-fast{--wait:.5s}
+
+.hbr .hbr-g[open] .hbr-win{opacity:1;visibility:visible;max-height:5000px;transform:none;transition:opacity .6s ease var(--wait),transform .6s ease var(--wait),visibility 0s linear var(--wait),max-height 0s linear var(--wait)}
+.hbr .hbr-g[open] .hbr-win .hbr-conf i{animation:hbr-conf 1.6s cubic-bezier(.2,.6,.3,1) var(--wait) both}
+.hbr .hbr-g[open] .hbr-res{max-height:120px;opacity:1;margin-top:16px;transition-delay:calc(var(--wait) - .3s)}
+.hbr .hbr-g[open] .hbr-play{opacity:.45;box-shadow:none;transform:translateY(2px)}
+.hbr .hbr-g[open] .hbr-play::after{animation:none}
+.hbr .hbr-g[open] .hbr-b1,.hbr .hbr-g[open] .hbr-hint{display:none}
+.hbr .hbr-g[open] .hbr-b2{display:inline}
+@media (prefers-reduced-motion:reduce){.hbr{--wait:.3s}.hbr *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}</style>
+<div class="hbr">
+  <div class="hbr-ok">✓ Tu compra está confirmada. ¡Gracias<span class="hbr-name">{first-name}</span>!</div>
+  <div class="hbr-top">
+    <span class="hbr-pill">✦ Premio por tu compra ✦</span>
+    <h1>Raspá tu billete <em>de la suerte</em></h1>
+    <p class="hbr-sub">Debajo de la capa dorada está tu descuento para <b>{product-title}</b>. Vale solo en esta pantalla.</p>
+  </div>
+  <details class="hbr-g">
+    <summary class="hbr-game">
+      <div class="hbr-ticket">
+        <div class="hbr-thead"><span>Raspá y ganá</span><small>N.º 004217</small></div>
+        <p class="hbr-ed">Edición Corsetería de Autor</p>
+        <div class="hbr-area">
+          <div class="hbr-under"><small>Ganaste</small><b class="hbr-prize-r">{discount}</b><small>en tu guía</small></div>
+          <div class="hbr-grid" aria-hidden="true"><span class="hbr-foilt hbr-k1"></span><span class="hbr-foilt hbr-k2"></span><span class="hbr-foilt hbr-k3"></span><span class="hbr-foilt hbr-k4"></span><span class="hbr-foilt hbr-k5"></span><span class="hbr-foilt hbr-k6"></span><span class="hbr-foilt hbr-k7"></span><span class="hbr-foilt hbr-k8"></span><span class="hbr-foilt hbr-k9"></span><span class="hbr-foilt hbr-k10"></span><span class="hbr-foilt hbr-k11"></span><span class="hbr-foilt hbr-k12"></span></div>
+          <span class="hbr-cover" aria-hidden="true">Raspá acá</span>
+        </div>
+        <p class="hbr-fine">Válido solo en esta pantalla · Uno por compra</p>
+      </div>
+      <p class="hbr-hint">👆 Tocá la tarjeta · todas las tarjetas ganan</p>
+      <span class="hbr-play hbr-mini"><span class="hbr-b1">Raspar todo de una</span><span class="hbr-b2">Raspado</span></span>
+      <p class="hbr-res">Ganaste <b class="hbr-prize">{discount}</b>. Bajá para usarlo ↓</p>
+    </summary>
+    <div class="hbr-win">
+      <div class="hbr-conf" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hbr-won">
+        <span class="hbr-tag">✦ Premio desbloqueado ✦</span>
+        <h2>Ganaste <span class="hbr-prize">{discount}</span></h2>
+        <p class="hbr-sub">Estaba debajo de la capa dorada y se aplica solo acá, sobre {product-title}.</p>
+      </div>
+      <div class="hbr-card">
+        <div class="hbr-visual"><img src="{product-image}" alt="{product-title}"></div>
+        <div class="hbr-body">
+          <h3>{product-title}</h3>
+          <ul class="hbr-list"><li>Calendario de ventas de 12 meses para Argentina</li><li>30 combinaciones corsé + lencería con tus moldes</li><li>40 mensajes para que te vuelvan a comprar</li><li>Tarjeta de cuidado + Pack Fiestas de Fin de Año</li></ul>
+          <div class="hbr-price"><span class="hbr-disc">{discount}</span><span class="hbr-old">{compare}</span><span class="hbr-now">{price}</span></div>
+          <span class="hbr-save">{savings}</span>
+          <a href="#" class="hbr-btn" data-pp-accept><span>Usar mi premio →<small>Se suma a tu pedido con un clic</small></span></a>
+          <p class="hbr-timer">Tu premio vence en <b>{timer}</b></p>
+        </div>
+      </div>
+    </div>
+  </details>
+  <button type="button" class="hbr-no" data-pp-decline>No, gracias. Sigo buscando clientas nuevas</button>
+  <p class="hbr-trust"><span>Pago seguro</span><span>Acceso inmediato</span><span>Garantía de 7 días</span></p>
+</div>
+<script>
+(function(){
+  var area=document.querySelector('.hbr .hbr-area'); if(!area) return;
+  var det=area.closest('details'), root=area.closest('.hbr');
+  var c=document.createElement('canvas'); if(!c.getContext||!det) return;
+  c.className='hbr-cv'; c.setAttribute('aria-hidden','true'); area.appendChild(c); root.classList.add('rs-js');
+  var x=c.getContext('2d'), dpr=Math.min(window.devicePixelRatio||1,2), W=0, H=0, done=false, down=false, n=0, last=null;
+  function paint(){
+    W=c.clientWidth; H=c.clientHeight; if(!W||!H) return;
+    c.width=Math.round(W*dpr); c.height=Math.round(H*dpr); x.setTransform(dpr,0,0,dpr,0,0);
+    var g=x.createLinearGradient(0,0,W,H);
+    g.addColorStop(0,'#9C7A4E'); g.addColorStop(.26,'#E8D2A6'); g.addColorStop(.48,'#B58E5E'); g.addColorStop(.66,'#F4E4C4'); g.addColorStop(.84,'#A07E52'); g.addColorStop(1,'#D8B785');
+    x.globalCompositeOperation='source-over'; x.fillStyle=g; x.fillRect(0,0,W,H);
+    x.fillStyle='rgba(255,255,255,.35)'; for(var i=0;i<W;i+=4){for(var j=0;j<H;j+=4){x.fillRect(i,j,1,1);}}
+    x.fillStyle='#6B4A2A'; x.textAlign='center'; x.textBaseline='middle';
+    x.font='700 18px Georgia,serif'; x.fillText('R A S P Á   A C Á',W/2,H/2+14);
+    x.font='28px Arial,sans-serif'; x.fillText('👆',W/2,H/2-18);
+  }
+  paint(); window.addEventListener('resize',function(){ if(!done && n<3) paint(); });
+  function pos(e){var r=c.getBoundingClientRect();return {x:e.clientX-r.left,y:e.clientY-r.top};}
+  function scratch(p){
+    x.globalCompositeOperation='destination-out'; x.lineCap='round'; x.lineJoin='round'; x.lineWidth=40;
+    x.beginPath(); if(last){x.moveTo(last.x,last.y);} else {x.moveTo(p.x,p.y);} x.lineTo(p.x+.1,p.y+.1); x.stroke(); last=p;
+    if(++n%6===0) check();
+  }
+  function check(){
+    try{var d=x.getImageData(0,0,c.width,c.height).data, clear=0, tot=0;
+      for(var i=3;i<d.length;i+=96){tot++; if(d[i]<30) clear++;}
+      if(tot && clear/tot>0.45) win();
+    }catch(e){ if(n>40) win(); }
+  }
+  function quitar(){ c.style.opacity='0'; setTimeout(function(){ if(c.parentNode) c.parentNode.removeChild(c); },500); }
+  function win(){ if(done) return; done=true; root.classList.add('rs-fast'); quitar(); det.open=true; }
+  function stop(e){ e.preventDefault(); e.stopPropagation(); }
+  c.addEventListener('click',stop);
+  c.addEventListener('pointerdown',function(e){ stop(e); down=true; last=null; try{c.setPointerCapture(e.pointerId);}catch(_){} scratch(pos(e)); });
+  c.addEventListener('pointermove',function(e){ if(!down) return; stop(e); scratch(pos(e)); });
+  function up(){ if(down){ down=false; last=null; check(); } }
+  c.addEventListener('pointerup',up); c.addEventListener('pointercancel',up);
+  /* si toca «Raspar todo de una», se destapa entera */
+  det.addEventListener('toggle',function(){ if(det.open && !done){ done=true; quitar(); } });
+  var h=root.querySelector('.hbr-hint'); if(h) h.textContent='👆 Raspá con el dedo (o tocá el botón) · todas las tarjetas ganan';
+})();
+</script>
